@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-Track current Project status <a href='https://github.com/mendixlabs/mx-a11y-extention/projects/1' target="_blank">here</a>
+Track current Project status <a href='https://github.com/mendixlabs/m11y/projects/1' target="_blank">here</a>
 </p>
 
 ---

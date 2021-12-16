@@ -17,8 +17,8 @@
         "dev": "tsc -b -w --preserveWatchOutput"
     },
     "keywords": [],
-    "author": "",
-    "license": "ISC",
+    "author": "ahwelgemoed",
+    "license": "MIT",
     "dependencies": {
         "apca-w3": "^0.0.98-g-4g.3"
     },

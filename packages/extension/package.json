@@ -12,14 +12,14 @@
     "style": "prettier --write \"src/**/*.{ts,tsx}\"",
     "changelog": "changelog generate"
   },
-  "author": "",
+  "author": "ahwelgemoed",
   "license": "MIT",
   "dependencies": {
     "@chakra-ui/icons": "^1.1.1",
     "@chakra-ui/react": "^1.7.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@m11y/factory": "^0.1.0",
+    "@m11y/factory": "^0.0.1",
     "@types/chrome": "^0.0.168",
     "add": "^2.0.6",
     "framer-motion": "^4",

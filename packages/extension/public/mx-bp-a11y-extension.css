@@ -1,0 +1,118 @@
+.mx-bp-a11y-extension-error {
+  border: 2px solid #f7768e !important;
+  animation: pulse-error 1s ease;
+}
+.mx-bp-a11y-extension-warning {
+  border: 2px solid #e0af68 !important;
+  animation: pulse-warning 1s ease;
+}
+.mx-bp-a11y-extension-step {
+  border: 2px solid #68e0d4 !important;
+  animation: pulse-step 1s ease;
+}
+@keyframes pulse-error {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 #f7768e;
+  }
+
+  50% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 10px #f7768e;
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 #f7768e;
+  }
+}
+@keyframes pulse-step {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 #68e0d4;
+  }
+
+  50% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 10px #68e0d4;
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 #68e0d4;
+  }
+}
+@keyframes pulse-warning {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 #e0af68;
+  }
+
+  70% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 10px #e0af68;
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 #e0af68;
+  }
+}
+
+.mx-bp-a11y-stepInfo {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: absolute;
+  top: 20px;
+  z-index: 99999;
+  background: #16161e;
+  right: 0;
+  width: 20vw;
+  min-height: 10vw;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #c0caf5;
+  animation-name: example;
+  animation-duration: 0.5s;
+}
+.mx-bp-a11y-stepInfo__error {
+  border: 2px solid #f7768e;
+}
+.mx-bp-a11y-stepInfo_warning {
+  border: 2px solid #e0af68;
+}
+.mx-bp-a11y-stepInfo h4 {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 900;
+  color: #c0caf5;
+  margin-bottom: 8px;
+}
+.mx-bp-a11y-stepInfo__error h4::before {
+  content: 'Error';
+  padding-left: 4px;
+  padding-right: 4px;
+  background-color: #f7768e;
+  border-radius: 4px;
+  color: #fff;
+  padding-left: 2px;
+}
+.mx-bp-a11y-stepInfo_warning h4::before {
+  content: 'Warning';
+  padding-left: 4px;
+  padding-right: 4px;
+  background-color: #e0af68;
+  border-radius: 4px;
+  color: #fff;
+}
+
+@keyframes example {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
+  }
+}

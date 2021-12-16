@@ -1,0 +1,51 @@
+{
+  "name": "@m11y/extension",
+  "version": "0.0.1",
+  "description": "Extension to Help A11y and Best Practices when creating Mendix Apps",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "webpack --config webpack/webpack.dev.js --watch",
+    "build": "webpack --config webpack/webpack.prod.js",
+    "clean": "rimraf dist",
+    "test": "npx jest",
+    "style": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "changelog": "changelog generate"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.1",
+    "@chakra-ui/react": "^1.7.2",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@m11y/factory": "^0.1.0",
+    "@types/chrome": "^0.0.168",
+    "add": "^2.0.6",
+    "framer-motion": "^4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-icons": "^4.3.1",
+    "react-markdown": "^7.1.1",
+    "yarn": "^1.22.17"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.0.158",
+    "@types/jest": "^27.0.2",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "generate-changelog": "^1.8.0",
+    "glob": "^7.1.6",
+    "jest": "^27.2.1",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2 ",
+    "ts-jest": "^27.0.5",
+    "ts-loader": "^8.0.0",
+    "typescript": "^4.4.3 ",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0",
+    "webpack-crx": "^1.0.8",
+    "webpack-merge": "^5.0.0"
+  }
+}

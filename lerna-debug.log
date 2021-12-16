@@ -1,0 +1,27 @@
+0 silly argv {
+0 silly argv   _: [ 'run' ],
+0 silly argv   scope: [ 'minema-app', '@minema/server' ],
+0 silly argv   parallel: true,
+0 silly argv   lernaVersion: '3.22.1',
+0 silly argv   '$0': '/Users/ahwelgemoed/Documents/repos/minema-electron-mono/node_modules/.bin/lerna',
+0 silly argv   script: 'dev'
+0 silly argv }
+1 notice cli v3.22.1
+2 verbose rootPath /Users/ahwelgemoed/Documents/repos/minema-electron-mono
+3 notice filter including ["minema-app","@minema/server"]
+4 info filter [ 'minema-app', '@minema/server' ]
+5 info Executing command in 2 packages: "npm run dev"
+6 silly npmRunScript.stream [ 'dev', [], 'minema-app' ]
+7 silly getExecOpts /Users/ahwelgemoed/Documents/repos/minema-electron-mono/packages/app undefined
+8 silly npmRunScript.stream [ 'dev', [], '@minema/server' ]
+9 silly getExecOpts /Users/ahwelgemoed/Documents/repos/minema-electron-mono/packages/server undefined
+10 error MaxBufferError: stdout maxBuffer exceeded
+10 error     at PassThrough.<anonymous> (/Users/ahwelgemoed/Documents/repos/minema-electron-mono/node_modules/get-stream/index.js:41:19)
+10 error     at PassThrough.emit (events.js:326:22)
+10 error     at addChunk (_stream_readable.js:298:12)
+10 error     at readableAddChunk (_stream_readable.js:269:11)
+10 error     at PassThrough.Readable.push (_stream_readable.js:214:10)
+10 error     at PassThrough.Transform.push (_stream_transform.js:152:32)
+10 error     at PassThrough.afterTransform (_stream_transform.js:96:10)
+10 error     at PassThrough._transform (_stream_passthrough.js:46:3)
+10 error     at PassThrough.Transform._read (_stream_transform.js:191:10)

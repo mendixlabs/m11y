@@ -1,0 +1,41 @@
+{
+  "name": "m11y",
+  "version": "1.1.2",
+  "description": "",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/babel**",
+      "**/jest"
+    ]
+  },
+  "scripts": {
+    "dev:extension": "lerna run dev --scope=@m11y/extension --stream",
+    "dev:packages": "lerna run dev --scope=@m11y/factory --stream",
+    "dev": "lerna run dev --scope={@m11y/factory,@m11y/extension} --parallel",
+    "test:factory": "lerna run test --scope=@m11y/factory --stream",
+    "version": "lerna version --conventional-commits",
+    "release:major": "lerna version major --conventional-commits --no-push",
+    "release:minor": "lerna version minor --conventional-commits --no-push",
+    "release:patch": "lerna version patch--conventional-commits --no-push",
+    "release:prerelease": "lerna version prerelease --conventional-prerelease --no-push",
+    "release:release": "lerna version --conventional-commits --create-release github",
+    "compose": "docker-compose up"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1",
+    "ts-node": "^9.0.0",
+    "ts-node-dev": "^1.0.0-pre.63",
+    "typescript": "^4.0.3"
+  },
+  "author": "A.H.Welgemoed",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/react": "^17.0.2",
+    "prettier": "^2.1.2"
+  }
+}

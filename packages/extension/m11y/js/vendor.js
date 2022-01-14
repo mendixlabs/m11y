@@ -6283,15 +6283,15 @@ function createIcon(options) {
   var _options$viewBox = options.viewBox,
       viewBox = _options$viewBox === void 0 ? "0 0 24 24" : _options$viewBox,
       pathDefinition = options.d,
-      path = options.path,
       displayName = options.displayName,
       _options$defaultProps = options.defaultProps,
       defaultProps = _options$defaultProps === void 0 ? {} : _options$defaultProps;
+  var path = react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(options.path);
   var Comp = /*#__PURE__*/(0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(function (props, ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Icon, _extends({
       ref: ref,
       viewBox: viewBox
-    }, defaultProps, props), path != null ? path : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    }, defaultProps, props), path.length ? path : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
       fill: "currentColor",
       d: pathDefinition
     }));
@@ -6379,7 +6379,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "WarningIcon": () => (/* binding */ WarningIcon),
 /* harmony export */   "WarningTwoIcon": () => (/* binding */ WarningTwoIcon)
 /* harmony export */ });
-/* harmony import */ var _chakra_ui_icon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @chakra-ui/icon */ "../../node_modules/@chakra-ui/icon/dist/chakra-ui-icon.esm.js");
+/* harmony import */ var _chakra_ui_icon__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @chakra-ui/icon */ "../../node_modules/@chakra-ui/icons/node_modules/@chakra-ui/icon/dist/chakra-ui-icon.esm.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
 
 
@@ -6902,6 +6902,168 @@ var HamburgerIcon = (0,_chakra_ui_icon__WEBPACK_IMPORTED_MODULE_0__.createIcon)(
 
 /***/ }),
 
+/***/ "../../node_modules/@chakra-ui/icons/node_modules/@chakra-ui/icon/dist/chakra-ui-icon.esm.js":
+/*!***************************************************************************************************!*\
+  !*** ../../node_modules/@chakra-ui/icons/node_modules/@chakra-ui/icon/dist/chakra-ui-icon.esm.js ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Icon": () => (/* binding */ Icon),
+/* harmony export */   "createIcon": () => (/* binding */ createIcon),
+/* harmony export */   "default": () => (/* binding */ Icon$1)
+/* harmony export */ });
+/* harmony import */ var _chakra_ui_system__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @chakra-ui/system */ "../../node_modules/@chakra-ui/system/dist/chakra-ui-system.esm.js");
+/* harmony import */ var _chakra_ui_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @chakra-ui/utils */ "../../node_modules/@chakra-ui/utils/dist/chakra-ui-utils.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
+
+
+
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+var _excluded = ["as", "viewBox", "color", "focusable", "children", "className", "__css"];
+var fallbackIcon = {
+  path: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("g", {
+    stroke: "currentColor",
+    strokeWidth: "1.5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    strokeLinecap: "round",
+    fill: "none",
+    d: "M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    fill: "currentColor",
+    strokeLinecap: "round",
+    d: "M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("circle", {
+    fill: "none",
+    strokeMiterlimit: "10",
+    cx: "12",
+    cy: "12",
+    r: "11.25"
+  })),
+  viewBox: "0 0 24 24"
+};
+var Icon = /*#__PURE__*/(0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(function (props, ref) {
+  var element = props.as,
+      viewBox = props.viewBox,
+      _props$color = props.color,
+      color = _props$color === void 0 ? "currentColor" : _props$color,
+      _props$focusable = props.focusable,
+      focusable = _props$focusable === void 0 ? false : _props$focusable,
+      children = props.children,
+      className = props.className,
+      __css = props.__css,
+      rest = _objectWithoutPropertiesLoose(props, _excluded);
+
+  var _className = (0,_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_2__.cx)("chakra-icon", className);
+
+  var styles = _extends({
+    w: "1em",
+    h: "1em",
+    display: "inline-block",
+    lineHeight: "1em",
+    flexShrink: 0,
+    color: color
+  }, __css);
+
+  var shared = {
+    ref: ref,
+    focusable: focusable,
+    className: _className,
+    __css: styles
+  };
+
+  var _viewBox = viewBox != null ? viewBox : fallbackIcon.viewBox;
+  /**
+   * If you're using an icon library like `react-icons`.
+   * Note: anyone passing the `as` prop, should manage the `viewBox` from the external component
+   */
+
+
+  if (element && typeof element !== "string") {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_chakra_ui_system__WEBPACK_IMPORTED_MODULE_1__.chakra.svg, _extends({
+      as: element
+    }, shared, rest));
+  }
+
+  var _path = children != null ? children : fallbackIcon.path;
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_chakra_ui_system__WEBPACK_IMPORTED_MODULE_1__.chakra.svg, _extends({
+    verticalAlign: "middle",
+    viewBox: _viewBox
+  }, shared, rest), _path);
+});
+
+if (_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_2__.__DEV__) {
+  Icon.displayName = "Icon";
+}
+
+var Icon$1 = Icon;
+
+function createIcon(options) {
+  var _options$viewBox = options.viewBox,
+      viewBox = _options$viewBox === void 0 ? "0 0 24 24" : _options$viewBox,
+      pathDefinition = options.d,
+      path = options.path,
+      displayName = options.displayName,
+      _options$defaultProps = options.defaultProps,
+      defaultProps = _options$defaultProps === void 0 ? {} : _options$defaultProps;
+  var Comp = /*#__PURE__*/(0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_1__.forwardRef)(function (props, ref) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Icon, _extends({
+      ref: ref,
+      viewBox: viewBox
+    }, defaultProps, props), path != null ? path : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+      fill: "currentColor",
+      d: pathDefinition
+    }));
+  });
+
+  if (_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_2__.__DEV__) {
+    Comp.displayName = displayName;
+  }
+
+  return Comp;
+}
+
+
+
+
+/***/ }),
+
 /***/ "../../node_modules/@chakra-ui/image/dist/chakra-ui-image.esm.js":
 /*!***********************************************************************!*\
   !*** ../../node_modules/@chakra-ui/image/dist/chakra-ui-image.esm.js ***!
@@ -7364,10 +7526,10 @@ var InputGroup = /*#__PURE__*/(0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_1__.
     /**
      * Make it possible to override the size and variant from `Input`
      */
-    var theming = {
+    var theming = (0,_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_3__.filterUndefined)({
       size: ((_child$props = child.props) == null ? void 0 : _child$props.size) || props.size,
       variant: ((_child$props2 = child.props) == null ? void 0 : _child$props2.variant) || props.variant
-    };
+    });
     return child.type.id !== "Input" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(child, theming) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(child, Object.assign(theming, groupStyles, child.props));
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_chakra_ui_system__WEBPACK_IMPORTED_MODULE_1__.chakra.div, _extends({
@@ -8712,39 +8874,51 @@ function useMediaQuery(query) {
     return isSupported ? !!env.window.matchMedia(query).matches : false;
   })),
       matches = _React$useState[0],
-      setMatches = _React$useState[1];
+      setMatches = _React$useState[1]; // Specifying matches in the dependency list will cause the event listeners
+  // to unload and then load each time the dependency changes. This causes
+  // Media Query Events to be missed. The event listeners should only be unloaded
+  // when the component unloads.
+
 
   useSafeLayoutEffect(function () {
     if (!isSupported) return undefined;
     var mediaQueryList = queries.map(function (query) {
       return env.window.matchMedia(query);
     });
-    var listenerList = mediaQueryList.map(function () {
-      var listener = function listener() {
-        var isEqual = function isEqual(prev, curr) {
-          return prev.length === curr.length && prev.every(function (elem, idx) {
-            return elem === curr[idx];
+    var listenerList = mediaQueryList.map(function (_, index) {
+      var listener = function listener(mqlEvent) {
+        var queryIndex = mediaQueryList.findIndex(function (mediaQuery) {
+          return mediaQuery.media === mqlEvent.media;
+        }); // As the event listener is on the media query list, any time the
+        // listener is called, we know there is a change. There's no need
+        // to compare the previous matches with current. Using
+        // setMatches(matches => {...}) provides access to the current matches
+        // state.  Trying to access matches outside the setMatches function
+        // would provide data from the the time of instantiation (stale).
+
+        setMatches(function (matches) {
+          var currentMatches = matches.map(function (x) {
+            return x;
           });
-        };
-
-        var currentMatches = mediaQueryList.map(function (mediaQuery) {
-          return mediaQuery.matches;
+          currentMatches[queryIndex] = mqlEvent.matches;
+          return currentMatches;
         });
+      }; // Listening to the 'change' event on the Media Query List Object
+      // is more performant as the callback is only invoked when a specified
+      // media query is matched. Using addEventListener on the window object
+      // to listen for the resize event will call the callback on every
+      // viewport resize.
 
-        if (!isEqual(matches, currentMatches)) {
-          setMatches(currentMatches);
-        }
-      };
 
-      env.window.addEventListener("resize", listener);
+      mediaQueryList[index].addEventListener("change", listener);
       return listener;
     });
     return function () {
       mediaQueryList.forEach(function (_, index) {
-        env.window.removeEventListener("resize", listenerList[index]);
+        mediaQueryList[index].removeEventListener("change", listenerList[index]);
       });
     };
-  }, [query]);
+  }, []);
   return matches;
 }
 
@@ -12135,6 +12309,7 @@ if (_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_4__.__DEV__) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Popover": () => (/* binding */ Popover),
+/* harmony export */   "PopoverAnchor": () => (/* binding */ PopoverAnchor),
 /* harmony export */   "PopoverArrow": () => (/* binding */ PopoverArrow),
 /* harmony export */   "PopoverBody": () => (/* binding */ PopoverBody),
 /* harmony export */   "PopoverCloseButton": () => (/* binding */ PopoverCloseButton),
@@ -12299,6 +12474,7 @@ function usePopover(props) {
       onOpen = _useDisclosure.onOpen,
       onToggle = _useDisclosure.onToggle;
 
+  var anchorRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var triggerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var popoverRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
   var isHoveringRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
@@ -12418,8 +12594,26 @@ function usePopover(props) {
       }, props.style)
     }), forwardedRef);
   }, [isOpen, getPopperProps]);
+  var getAnchorProps = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (props, _ref) {
+    if (_ref === void 0) {
+      _ref = null;
+    }
+
+    var anchorProps = _extends({}, props, {
+      // If anchor is rendered, it is used as reference.
+      ref: (0,_chakra_ui_react_utils__WEBPACK_IMPORTED_MODULE_1__.mergeRefs)(_ref, anchorRef, referenceRef)
+    });
+
+    return anchorProps;
+  }, [anchorRef, referenceRef]);
   var openTimeout = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var closeTimeout = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var maybeReferenceRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (node) {
+    // Don't override referenceRef in case the PopoverAnchor is rendered.
+    if (anchorRef.current == null) {
+      referenceRef(node);
+    }
+  }, [referenceRef]);
   var getTriggerProps = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (props, _ref) {
     if (props === void 0) {
       props = {};
@@ -12430,7 +12624,7 @@ function usePopover(props) {
     }
 
     var triggerProps = _extends({}, props, {
-      ref: (0,_chakra_ui_react_utils__WEBPACK_IMPORTED_MODULE_1__.mergeRefs)(triggerRef, _ref, referenceRef),
+      ref: (0,_chakra_ui_react_utils__WEBPACK_IMPORTED_MODULE_1__.mergeRefs)(triggerRef, _ref, maybeReferenceRef),
       id: triggerId,
       "aria-haspopup": "dialog",
       "aria-expanded": isOpen,
@@ -12449,7 +12643,14 @@ function usePopover(props) {
        * @see https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html
        */
       triggerProps.onFocus = (0,_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_7__.callAllHandlers)(props.onFocus, onOpen);
-      triggerProps.onBlur = (0,_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_7__.callAllHandlers)(props.onBlur, onClose);
+      triggerProps.onBlur = (0,_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_7__.callAllHandlers)(props.onBlur, function (event) {
+        var relatedTarget = (0,_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_7__.getRelatedTarget)(event);
+        var isValidBlur = !(0,_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_7__.contains)(popoverRef.current, relatedTarget);
+
+        if (isOpen && closeOnBlur && isValidBlur) {
+          onClose();
+        }
+      });
       /**
        * Any content that shows on hover or focus must be dismissible.
        * This case pressing `Escape` will dismiss the popover
@@ -12481,7 +12682,7 @@ function usePopover(props) {
     }
 
     return triggerProps;
-  }, [triggerId, isOpen, popoverId, trigger, referenceRef, onToggle, onOpen, onClose, openDelay, closeDelay]);
+  }, [triggerId, isOpen, popoverId, trigger, maybeReferenceRef, onToggle, onOpen, closeOnBlur, onClose, openDelay, closeDelay]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     return function () {
       if (openTimeout.current) {
@@ -12529,6 +12730,7 @@ function usePopover(props) {
     forceUpdate: forceUpdate,
     isOpen: isOpen,
     onClose: onClose,
+    getAnchorProps: getAnchorProps,
     getArrowProps: getArrowProps,
     getArrowInnerProps: getArrowInnerProps,
     getPopoverPositionerProps: getPopoverPositionerProps,
@@ -12572,6 +12774,25 @@ if (_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_7__.__DEV__) {
   Popover.displayName = "Popover";
 }
 /**
+ * PopoverAnchor is element that is used as the positioning reference
+ * for the popover.
+ */
+
+
+var PopoverAnchor = function PopoverAnchor(props) {
+  // enforce a single child
+  var child = react__WEBPACK_IMPORTED_MODULE_0__.Children.only(props.children);
+
+  var _usePopoverContext = usePopoverContext(),
+      getAnchorProps = _usePopoverContext.getAnchorProps;
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(child, getAnchorProps(child.props, child.ref));
+};
+
+if (_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_7__.__DEV__) {
+  PopoverAnchor.displayName = "PopoverAnchor";
+}
+/**
  * PopoverTrigger opens the popover's content. It must be an interactive element
  * such as `button` or `a`.
  */
@@ -12581,8 +12802,8 @@ var PopoverTrigger = function PopoverTrigger(props) {
   // enforce a single child
   var child = react__WEBPACK_IMPORTED_MODULE_0__.Children.only(props.children);
 
-  var _usePopoverContext = usePopoverContext(),
-      getTriggerProps = _usePopoverContext.getTriggerProps;
+  var _usePopoverContext2 = usePopoverContext(),
+      getTriggerProps = _usePopoverContext2.getTriggerProps;
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(child, getTriggerProps(child.props, child.ref));
 };
@@ -12595,9 +12816,9 @@ var PopoverContent = /*#__PURE__*/(0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_
   var rootProps = props.rootProps,
       contentProps = _objectWithoutPropertiesLoose(props, _excluded2);
 
-  var _usePopoverContext2 = usePopoverContext(),
-      getPopoverProps = _usePopoverContext2.getPopoverProps,
-      getPopoverPositionerProps = _usePopoverContext2.getPopoverPositionerProps;
+  var _usePopoverContext3 = usePopoverContext(),
+      getPopoverProps = _usePopoverContext3.getPopoverProps,
+      getPopoverPositionerProps = _usePopoverContext3.getPopoverPositionerProps;
 
   var styles = (0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_4__.useStyles)();
 
@@ -12625,8 +12846,8 @@ if (_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_7__.__DEV__) {
  * for the popover's content and it is first announced by screenreaders.
  */
 var PopoverHeader = /*#__PURE__*/(0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_4__.forwardRef)(function (props, ref) {
-  var _usePopoverContext3 = usePopoverContext(),
-      getHeaderProps = _usePopoverContext3.getHeaderProps;
+  var _usePopoverContext4 = usePopoverContext(),
+      getHeaderProps = _usePopoverContext4.getHeaderProps;
 
   var styles = (0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_4__.useStyles)();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_chakra_ui_system__WEBPACK_IMPORTED_MODULE_4__.chakra.header, _extends({}, getHeaderProps(props, ref), {
@@ -12644,8 +12865,8 @@ if (_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_7__.__DEV__) {
  * at least one interactive element.
  */
 var PopoverBody = /*#__PURE__*/(0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_4__.forwardRef)(function (props, ref) {
-  var _usePopoverContext4 = usePopoverContext(),
-      getBodyProps = _usePopoverContext4.getBodyProps;
+  var _usePopoverContext5 = usePopoverContext(),
+      getBodyProps = _usePopoverContext5.getBodyProps;
 
   var styles = (0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_4__.useStyles)();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_chakra_ui_system__WEBPACK_IMPORTED_MODULE_4__.chakra.div, _extends({}, getBodyProps(props, ref), {
@@ -12671,8 +12892,8 @@ if (_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_7__.__DEV__) {
 }
 
 var PopoverCloseButton = function PopoverCloseButton(props) {
-  var _usePopoverContext5 = usePopoverContext(),
-      onClose = _usePopoverContext5.onClose;
+  var _usePopoverContext6 = usePopoverContext(),
+      onClose = _usePopoverContext6.onClose;
 
   var styles = (0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_4__.useStyles)();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_chakra_ui_close_button__WEBPACK_IMPORTED_MODULE_8__.CloseButton, _extends({
@@ -12694,9 +12915,9 @@ var PopoverArrow = function PopoverArrow(props) {
       bgColor = props.bgColor,
       backgroundColor = props.backgroundColor;
 
-  var _usePopoverContext6 = usePopoverContext(),
-      getArrowProps = _usePopoverContext6.getArrowProps,
-      getArrowInnerProps = _usePopoverContext6.getArrowInnerProps;
+  var _usePopoverContext7 = usePopoverContext(),
+      getArrowProps = _usePopoverContext7.getArrowProps,
+      getArrowInnerProps = _usePopoverContext7.getArrowInnerProps;
 
   var styles = (0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_4__.useStyles)();
   var arrowBg = (_ref = bg != null ? bg : bgColor) != null ? _ref : backgroundColor;
@@ -14983,6 +15204,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "usePinInputDescendantsContext": () => (/* reexport safe */ _chakra_ui_pin_input__WEBPACK_IMPORTED_MODULE_23__.usePinInputDescendantsContext),
 /* harmony export */   "usePinInputField": () => (/* reexport safe */ _chakra_ui_pin_input__WEBPACK_IMPORTED_MODULE_23__.usePinInputField),
 /* harmony export */   "Popover": () => (/* reexport safe */ _chakra_ui_popover__WEBPACK_IMPORTED_MODULE_24__.Popover),
+/* harmony export */   "PopoverAnchor": () => (/* reexport safe */ _chakra_ui_popover__WEBPACK_IMPORTED_MODULE_24__.PopoverAnchor),
 /* harmony export */   "PopoverArrow": () => (/* reexport safe */ _chakra_ui_popover__WEBPACK_IMPORTED_MODULE_24__.PopoverArrow),
 /* harmony export */   "PopoverBody": () => (/* reexport safe */ _chakra_ui_popover__WEBPACK_IMPORTED_MODULE_24__.PopoverBody),
 /* harmony export */   "PopoverCloseButton": () => (/* reexport safe */ _chakra_ui_popover__WEBPACK_IMPORTED_MODULE_24__.PopoverCloseButton),
@@ -17933,7 +18155,7 @@ function parseGradient(value, theme) {
 
     var key = "colors." + _color;
     var color = key in theme.__cssMap ? theme.__cssMap[key].varRef : _color;
-    return _stopOrFunc ? [color, _stopOrFunc].join(" ") : color;
+    return _stopOrFunc ? [color].concat(Array.isArray(_stopOrFunc) ? _stopOrFunc : [_stopOrFunc]).join(" ") : color;
   });
 
   return _type + "(" + _values.join(", ") + ")";
@@ -18330,7 +18552,10 @@ var flexbox = {
   order: true,
   placeItems: true,
   placeContent: true,
-  placeSelf: true
+  placeSelf: true,
+  gap: t.space("gap"),
+  rowGap: t.space("rowGap"),
+  columnGap: t.space("columnGap")
 };
 Object.assign(flexbox, {
   flexDir: flexbox.flexDirection
@@ -18489,7 +18714,7 @@ var position = {
   position: true,
   pos: t.prop("position"),
   zIndex: t.prop("zIndex", "zIndices"),
-  inset: t.spaceT(["top", "right", "bottom", "left"]),
+  inset: t.spaceT("inset"),
   insetX: t.spaceT(["left", "right"]),
   insetInline: t.spaceT("insetInline"),
   insetY: t.spaceT(["top", "bottom"]),
@@ -19832,10 +20057,25 @@ function useChakra() {
   return _extends({}, colorModeResult, {
     theme: theme
   });
-} // inspired from ./css.ts : resolveTokenValue
+}
+
+var resolveBreakpointValue = function resolveBreakpointValue(theme, tokenValue, fallbackValue) {
+  var _ref, _getValue;
+
+  if (tokenValue === null) return tokenValue;
+
+  var getValue = function getValue(val) {
+    var _theme$__breakpoints, _theme$__breakpoints$;
+
+    return (_theme$__breakpoints = theme.__breakpoints) == null ? void 0 : (_theme$__breakpoints$ = _theme$__breakpoints.asArray) == null ? void 0 : _theme$__breakpoints$[val];
+  };
+
+  return (_ref = (_getValue = getValue(tokenValue)) != null ? _getValue : getValue(fallbackValue)) != null ? _ref : fallbackValue;
+}; // inspired from ./css.ts : resolveTokenValue
+
 
 var resolveTokenValue = function resolveTokenValue(theme, tokenValue, fallbackValue) {
-  var _ref, _getValue;
+  var _ref2, _getValue2;
 
   if (tokenValue == null) return tokenValue;
 
@@ -19845,7 +20085,7 @@ var resolveTokenValue = function resolveTokenValue(theme, tokenValue, fallbackVa
     return (_theme$__cssMap = theme.__cssMap) == null ? void 0 : (_theme$__cssMap$val = _theme$__cssMap[val]) == null ? void 0 : _theme$__cssMap$val.value;
   };
 
-  return (_ref = (_getValue = getValue(tokenValue)) != null ? _getValue : getValue(fallbackValue)) != null ? _ref : fallbackValue;
+  return (_ref2 = (_getValue2 = getValue(tokenValue)) != null ? _getValue2 : getValue(fallbackValue)) != null ? _ref2 : fallbackValue;
 };
 
 function useToken(scale, token, fallback) {
@@ -19859,11 +20099,21 @@ function useToken(scale, token, fallback) {
     }
 
     return token.map(function (token, index) {
-      var _fallbackArr$index;
+      var _fallbackArr$index2;
+
+      if (scale === "breakpoints") {
+        var _fallbackArr$index;
+
+        return resolveBreakpointValue(theme, token, (_fallbackArr$index = fallbackArr[index]) != null ? _fallbackArr$index : token);
+      }
 
       var path = scale + "." + token;
-      return resolveTokenValue(theme, path, (_fallbackArr$index = fallbackArr[index]) != null ? _fallbackArr$index : token);
+      return resolveTokenValue(theme, path, (_fallbackArr$index2 = fallbackArr[index]) != null ? _fallbackArr$index2 : token);
     });
+  }
+
+  if (scale === "breakpoints") {
+    return resolveBreakpointValue(theme, token, fallback);
   }
 
   var path = scale + "." + token;
@@ -25268,7 +25518,9 @@ var Toast$1 = function Toast(props) {
       _props$position = props.position,
       position = _props$position === void 0 ? "bottom" : _props$position,
       _props$duration = props.duration,
-      duration = _props$duration === void 0 ? 5000 : _props$duration;
+      duration = _props$duration === void 0 ? 5000 : _props$duration,
+      _props$containerStyle = props.containerStyle,
+      containerStyle = _props$containerStyle === void 0 ? {} : _props$containerStyle;
 
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(duration),
       delay = _React$useState[0],
@@ -25320,12 +25572,12 @@ var Toast$1 = function Toast(props) {
     style: style
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_reach_alert__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "chakra-toast__inner",
-    style: {
+    style: _extends({
       pointerEvents: "auto",
       maxWidth: 560,
       minWidth: 300,
       margin: "0.5rem"
-    }
+    }, containerStyle)
   }, (0,_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_6__.isFunction)(message) ? message({
     id: id,
     onClose: close
@@ -25441,7 +25693,8 @@ var ToastManager = /*#__PURE__*/function (_React$Component) {
           return _this.removeToast(String(id), position);
         },
         status: options.status,
-        requestClose: false
+        requestClose: false,
+        containerStyle: options.containerStyle
       };
     };
 
@@ -25962,13 +26215,11 @@ function useTooltip(props) {
       closeWithDelay();
     }
   }, [closeOnMouseDown, closeWithDelay]);
-
-  var onKeyDown = function onKeyDown(event) {
+  var onKeyDown = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(function (event) {
     if (isOpen && event.key === "Escape") {
       closeWithDelay();
     }
-  };
-
+  }, [isOpen, closeWithDelay]);
   (0,_chakra_ui_hooks__WEBPACK_IMPORTED_MODULE_1__.useEventListener)("keydown", onKeyDown);
   react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
     return function () {
@@ -26748,7 +26999,7 @@ var Slide = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function 
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.AnimatePresence, {
     custom: custom
-  }, show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_4__.motion.div, _extends({
+  }, show && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_4__.motion.div, _extends({}, rest, {
     ref: ref,
     initial: "exit",
     className: (0,_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_1__.cx)("chakra-slide", className),
@@ -26757,7 +27008,7 @@ var Slide = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function 
     custom: custom,
     variants: variants$1,
     style: computedStyle
-  }, rest)));
+  })));
 });
 
 if (_chakra_ui_utils__WEBPACK_IMPORTED_MODULE_1__.__DEV__) {
@@ -30502,8 +30753,9 @@ var getRules = function getRules(value, points) {
 
 var fixedElements = /* #__PURE__ */new WeakMap();
 var compat = function compat(element) {
-  if (element.type !== 'rule' || !element.parent || // .length indicates if this rule contains pseudo or not
-  !element.length) {
+  if (element.type !== 'rule' || !element.parent || // positive .length indicates that this rule contains pseudo
+  // negative .length indicates that this rule has been already prefixed
+  element.length < 1) {
     return;
   }
 
@@ -31233,7 +31485,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var pkg = {
 	name: "@emotion/react",
-	version: "11.7.0",
+	version: "11.7.1",
 	main: "dist/emotion-react.cjs.js",
 	module: "dist/emotion-react.esm.js",
 	browser: {
@@ -31260,7 +31512,7 @@ var pkg = {
 	},
 	dependencies: {
 		"@babel/runtime": "^7.13.10",
-		"@emotion/cache": "^11.6.0",
+		"@emotion/cache": "^11.7.1",
 		"@emotion/serialize": "^1.0.2",
 		"@emotion/sheet": "^1.1.0",
 		"@emotion/utils": "^1.0.0",
@@ -31281,8 +31533,8 @@ var pkg = {
 	},
 	devDependencies: {
 		"@babel/core": "^7.13.10",
-		"@emotion/css": "11.5.0",
-		"@emotion/css-prettifier": "1.0.0",
+		"@emotion/css": "11.7.1",
+		"@emotion/css-prettifier": "1.0.1",
 		"@emotion/server": "11.4.0",
 		"@emotion/styled": "11.6.0",
 		"@types/react": "^16.9.11",
@@ -102246,31 +102498,32 @@ function rulesheet (callback) {
  * @param {function} callback
  */
 function prefixer (element, index, children, callback) {
-	if (!element.return)
-		switch (element.type) {
-			case _Enum_js__WEBPACK_IMPORTED_MODULE_1__.DECLARATION: element.return = (0,_Prefixer_js__WEBPACK_IMPORTED_MODULE_2__.prefix)(element.value, element.length)
-				break
-			case _Enum_js__WEBPACK_IMPORTED_MODULE_1__.KEYFRAMES:
-				return (0,_Serializer_js__WEBPACK_IMPORTED_MODULE_3__.serialize)([(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(element.value, '@', '@' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT), element, '')], callback)
-			case _Enum_js__WEBPACK_IMPORTED_MODULE_1__.RULESET:
-				if (element.length)
-					return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.combine)(element.props, function (value) {
-						switch ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.match)(value, /(::plac\w+|:read-\w+)/)) {
-							// :read-(only|write)
-							case ':read-only': case ':read-write':
-								return (0,_Serializer_js__WEBPACK_IMPORTED_MODULE_3__.serialize)([(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /:(read-\w+)/, ':' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MOZ + '$1'), element, '')], callback)
-							// :placeholder
-							case '::placeholder':
-								return (0,_Serializer_js__WEBPACK_IMPORTED_MODULE_3__.serialize)([
-									(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /:(plac\w+)/, ':' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + 'input-$1'), element, ''),
-									(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /:(plac\w+)/, ':' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MOZ + '$1'), element, ''),
-									(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /:(plac\w+)/, _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + 'input-$1'), element, '')
-								], callback)
-						}
+	if (element.length > -1)
+		if (!element.return)
+			switch (element.type) {
+				case _Enum_js__WEBPACK_IMPORTED_MODULE_1__.DECLARATION: element.return = (0,_Prefixer_js__WEBPACK_IMPORTED_MODULE_2__.prefix)(element.value, element.length)
+					break
+				case _Enum_js__WEBPACK_IMPORTED_MODULE_1__.KEYFRAMES:
+					return (0,_Serializer_js__WEBPACK_IMPORTED_MODULE_3__.serialize)([(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)(element, {value: (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(element.value, '@', '@' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT)})], callback)
+				case _Enum_js__WEBPACK_IMPORTED_MODULE_1__.RULESET:
+					if (element.length)
+						return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.combine)(element.props, function (value) {
+							switch ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.match)(value, /(::plac\w+|:read-\w+)/)) {
+								// :read-(only|write)
+								case ':read-only': case ':read-write':
+									return (0,_Serializer_js__WEBPACK_IMPORTED_MODULE_3__.serialize)([(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)(element, {props: [(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /:(read-\w+)/, ':' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MOZ + '$1')]})], callback)
+								// :placeholder
+								case '::placeholder':
+									return (0,_Serializer_js__WEBPACK_IMPORTED_MODULE_3__.serialize)([
+										(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)(element, {props: [(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /:(plac\w+)/, ':' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.WEBKIT + 'input-$1')]}),
+										(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)(element, {props: [(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /:(plac\w+)/, ':' + _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MOZ + '$1')]}),
+										(0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_4__.copy)(element, {props: [(0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.replace)(value, /:(plac\w+)/, _Enum_js__WEBPACK_IMPORTED_MODULE_1__.MS + 'input-$1')]})
+									], callback)
+							}
 
-						return ''
-					})
-		}
+							return ''
+						})
+			}
 }
 
 /**
@@ -102376,8 +102629,15 @@ function parse (value, root, parent, rule, rules, rulesets, pseudo, points, decl
 
 	while (scanning)
 		switch (previous = character, character = (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.next)()) {
-			// " ' [ (
-			case 34: case 39: case 91: case 40:
+			// (
+			case 40:
+				if (previous != 108 && characters.charCodeAt(length - 1) == 58) {
+					if ((0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.indexof)(characters += (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.replace)((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.delimit)(character), '&', '&\f'), '&\f') != -1)
+						ampersand = -1
+					break
+				}
+			// " ' [
+			case 34: case 39: case 91:
 				characters += (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.delimit)(character)
 				break
 			// \t \n \r \s
@@ -102427,7 +102687,7 @@ function parse (value, root, parent, rule, rules, rulesets, pseudo, points, decl
 										parse(value, reference, reference, rule && (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.append)(ruleset(value, reference, reference, 0, 0, rules, points, type, rules, props = [], length), children), rules, children, length, points, rule ? props : children)
 										break
 									default:
-										parse(characters, reference, reference, reference, [''], children, length, points, children)
+										parse(characters, reference, reference, reference, [''], children, 0, points, children)
 								}
 				}
 
@@ -102458,7 +102718,7 @@ function parse (value, root, parent, rule, rules, rulesets, pseudo, points, decl
 						if ((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.peek)() === 45)
 							characters += (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.delimit)((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.next)())
 
-						atrule = (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.peek)(), offset = (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.strlen)(type = characters += (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.identifier)((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.caret)())), character++
+						atrule = (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.peek)(), offset = length = (0,_Utility_js__WEBPACK_IMPORTED_MODULE_1__.strlen)(type = characters += (0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.identifier)((0,_Tokenizer_js__WEBPACK_IMPORTED_MODULE_0__.caret)())), character++
 						break
 					// -
 					case 45:
@@ -102700,6 +102960,7 @@ function stringify (element, index, children, callback) {
 	switch (element.type) {
 		case _Enum_js__WEBPACK_IMPORTED_MODULE_1__.IMPORT: case _Enum_js__WEBPACK_IMPORTED_MODULE_1__.DECLARATION: return element.return = element.return || element.value
 		case _Enum_js__WEBPACK_IMPORTED_MODULE_1__.COMMENT: return ''
+		case _Enum_js__WEBPACK_IMPORTED_MODULE_1__.KEYFRAMES: return element.return = element.value + '{' + serialize(element.children, callback) + '}'
 		case _Enum_js__WEBPACK_IMPORTED_MODULE_1__.RULESET: element.value = element.props.join(',')
 	}
 
@@ -102756,11 +103017,11 @@ var characters = ''
 
 /**
  * @param {string} value
- * @param {object} root
- * @param {object?} parent
+ * @param {object | null} root
+ * @param {object | null} parent
  * @param {string} type
- * @param {string[]} props
- * @param {object[]} children
+ * @param {string[] | string} props
+ * @param {object[] | string} children
  * @param {number} length
  */
 function node (value, root, parent, type, props, children, length) {
@@ -102768,12 +103029,12 @@ function node (value, root, parent, type, props, children, length) {
 }
 
 /**
- * @param {string} value
  * @param {object} root
- * @param {string} type
+ * @param {object} props
+ * @return {object}
  */
-function copy (value, root, type) {
-	return node(value, root.root, root.parent, type, root.props, root.children, 0)
+function copy (root, props) {
+	return (0,_Utility_js__WEBPACK_IMPORTED_MODULE_0__.assign)(node('', null, null, '', null, null, 0), root, {length: -root.length}, props)
 }
 
 /**
@@ -102947,7 +103208,9 @@ function delimiter (type) {
 				return position
 			// " '
 			case 34: case 39:
-				return delimiter(type === 34 || type === 39 ? type : character)
+				if (type !== 34 && type !== 39)
+					delimiter(character)
+				break
 			// (
 			case 40:
 				if (type === 41)
@@ -103004,6 +103267,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "abs": () => (/* binding */ abs),
 /* harmony export */   "from": () => (/* binding */ from),
+/* harmony export */   "assign": () => (/* binding */ assign),
 /* harmony export */   "hash": () => (/* binding */ hash),
 /* harmony export */   "trim": () => (/* binding */ trim),
 /* harmony export */   "match": () => (/* binding */ match),
@@ -103027,6 +103291,12 @@ var abs = Math.abs
  * @return {string}
  */
 var from = String.fromCharCode
+
+/**
+ * @param {object}
+ * @return {object}
+ */
+var assign = Object.assign
 
 /**
  * @param {string} value
@@ -103066,7 +103336,7 @@ function replace (value, pattern, replacement) {
 
 /**
  * @param {string} value
- * @param {string} value
+ * @param {string} search
  * @return {number}
  */
 function indexof (value, search) {

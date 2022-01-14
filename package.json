@@ -22,8 +22,7 @@
     "release:minor": "lerna version minor --conventional-commits --no-push",
     "release:patch": "lerna version patch--conventional-commits --no-push",
     "release:prerelease": "lerna version prerelease --conventional-prerelease --no-push",
-    "release:release": "lerna version --conventional-commits --create-release github",
-    "compose": "docker-compose up"
+    "release:release": "lerna version --conventional-commits --create-release github"
   },
   "devDependencies": {
     "lerna": "^3.22.1",

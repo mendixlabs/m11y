@@ -1,4 +1,4 @@
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const common = require('./webpack.common.js');
 const WebpackCrx = require('webpack-crx');
@@ -10,7 +10,6 @@ const CRX = {
     new WebpackCrx({
       src: path.join(srcDir, 'm11y'),
       dest: path.join(srcDir, 'build'),
-      name: 'M11Extension',
     }),
   ],
 };

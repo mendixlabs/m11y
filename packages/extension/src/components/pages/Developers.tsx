@@ -29,6 +29,7 @@ const Developers = () => {
       }
     });
   };
+
   useEffect(() => {
     getAllErrors();
   }, []);

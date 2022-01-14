@@ -887,7 +887,6 @@ class ATagErrorList extends ErrorWarning_1.ErrorWarning {
                         });
                     }
                     if (tag.children.length) {
-                        console.log(`tag.children`, tag.children);
                         // A tag has children
                         if (!tag.children[0].hasOwnProperty("ariaLabel")) {
                             this._pushErrorToErrorList({

@@ -1,34 +1,32 @@
+import { ErrorList } from '@m11y/factory';
 import {
   ErrorType,
-  IRationalize,
   ATagErrorEnum,
   HTagErrorEnum,
   MenuErrorEnum,
   ImgTagErrorEnum,
   ColTagErrorEnum,
-  descriptionsType,
   InputTagErrorEnum,
   DataViewErrorEnum,
   ButtonTagErrorEnum,
   ReturnErrorList,
-  AllErrorEnumTypes,
   ENUM_CBTestTypes,
 } from '../utils/types';
 
 export const _compareErrorLength = (a: ReturnErrorList, b: ReturnErrorList) => {
-  if (a.errors.length < b.errors.length) {
+  if ((a.errors as ErrorList[])?.length < (b.errors as ErrorList[])?.length) {
     return 1;
   }
-  if (a.errors.length > b.errors.length) {
+  if ((a.errors as ErrorList[])?.length > (b.errors as ErrorList[])?.length) {
     return -1;
   }
   return 0;
 };
 export const _compareCount = (a: ReturnErrorList, b: ReturnErrorList) => {
-  if (a.count < b.count) {
+  if ((a.count as number) < (b.count as number)) {
     return 1;
   }
-  if (a.count > b.count) {
+  if ((a.count as number) > (b.count as number)) {
     return -1;
   }
   return 0;

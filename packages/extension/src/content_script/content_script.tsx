@@ -1,6 +1,7 @@
 import {
   H_Tag,
   Col_Tag,
+  Row_Tag,
   Menu_Tag,
   CBFilter,
   Input_Tag,
@@ -25,16 +26,32 @@ import { injectCBTest } from '@m11y/factory';
 
 let mxWidow: I_MX_WINDOW;
 
-const H_Class = new H_Tag('h1');
-const Col_Class = new Col_Tag('col');
-const A_Class = new ATagErrorList('a');
-const Input_Class = new Input_Tag('input');
-const Button_Class = new Button_Tag('button');
-const Img_Class = new Img_TagErrorList('img');
-const TextArea_Class = new Input_Tag('textarea');
-const Menu_Class = new Menu_Tag('[role="menu"]');
-const DataView_Class = new DataView_MainContainer('mx-placeholder');
-const CBFilter_Class = new CBFilter();
+let H_Class = new H_Tag('h1');
+let Col_Class = new Col_Tag('col');
+let A_Class = new ATagErrorList('a');
+let Input_Class = new Input_Tag('input');
+let Button_Class = new Button_Tag('button');
+let Img_Class = new Img_TagErrorList('img');
+let TextArea_Class = new Input_Tag('textarea');
+let Menu_Class = new Menu_Tag('[role="menu"]');
+let Row_Class = new Row_Tag('row');
+let DataView_Class = new DataView_MainContainer('mx-placeholder');
+let CBFilter_Class = new CBFilter();
+
+// THis is overkill - Doing it prop is causing issues - Quick Fix
+function main() {
+  H_Class = new H_Tag('h1');
+  Col_Class = new Col_Tag('col');
+  A_Class = new ATagErrorList('a');
+  Input_Class = new Input_Tag('input');
+  Button_Class = new Button_Tag('button');
+  Img_Class = new Img_TagErrorList('img');
+  TextArea_Class = new Input_Tag('textarea');
+  Menu_Class = new Menu_Tag('[role="menu"]');
+  Row_Class = new Row_Tag('row');
+  DataView_Class = new DataView_MainContainer('mx-placeholder');
+  CBFilter_Class = new CBFilter();
+}
 
 (async function () {
   // @ts-ignore
@@ -44,6 +61,7 @@ const CBFilter_Class = new CBFilter();
 const allCurrentClasses: AllClasses_Types = {
   A_Class,
   H_Class,
+  Row_Class,
   Img_Class,
   Col_Class,
   Menu_Class,
@@ -57,11 +75,12 @@ injectCBTest();
 
 chrome.runtime.onMessage.addListener(function (
   msg: IContentScriptMessage,
-  sender,
+  _sender,
   sendResponse
 ) {
   // Run All checks
   if (msg.message === EnumContentScripMessages.GET_ALL_ERRORS) {
+    main();
     const allErrors = getAllErrors({ allCurrentClasses });
     sendResponse(allErrors);
   }

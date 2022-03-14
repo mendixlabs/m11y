@@ -17,10 +17,10 @@ import {
 } from "./types";
 
 export const _compareErrorLength = (a: ReturnErrorList, b: ReturnErrorList) => {
-    if (a.errors.length < b.errors.length) {
+    if (a?.errors?.length < b?.errors?.length) {
         return 1;
     }
-    if (a.errors.length > b.errors.length) {
+    if (a?.errors?.length > b?.errors?.length) {
         return -1;
     }
     return 0;
@@ -46,6 +46,8 @@ export const _getCorrespondingEnum = (tag: string) => {
     switch (tag) {
         case "a":
             return ATagErrorEnum;
+        case "row":
+            return ColTagErrorEnum;
         case "button":
             return ButtonTagErrorEnum;
         case "img":
@@ -125,6 +127,11 @@ export const rationalizeTagInformation = (tag: string): IRationalize => {
                 mendixName: "Dataview/Layoutgrid",
                 showButtons: false
             };
+        case "row":
+            return {
+                mendixName: "Dataview/Layoutgrid (Row)",
+                showButtons: true
+            };
         default:
             return {
                 mendixName: "⚠️ No Corresponding Tag found",
@@ -160,7 +167,13 @@ export const _descriptions = (r: AllErrorEnumTypes): descriptionsType => {
             };
         case ColTagErrorEnum.COL_EMPTY:
             return {
-                mendix: "ColTagErrorEnum.COL_EMPTY",
+                mendix: "Empty Columns should be avoided as Layout helper",
+                technical:
+                    "`.col` class names are added to layout grids to help with layout and responsiveness - Usually follows Bootstrap 4"
+            };
+        case ColTagErrorEnum.LONG_COLS:
+            return {
+                mendix: "Usage of Very long columns are to be avoided for help with Keyboard interactions",
                 technical:
                     "`.col` class names are added to layout grids to help with layout and responsiveness - Usually follows Bootstrap 4"
             };
@@ -203,7 +216,7 @@ export const _descriptions = (r: AllErrorEnumTypes): descriptionsType => {
 
         default:
             return {
-                mendix: "⚠️ No Corresponding Tag found",
+                mendix: "⚠️ No Corresponding Tag found (DESC)",
                 technical: "⚠️ No Corresponding Tag found"
             };
     }

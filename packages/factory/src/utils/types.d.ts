@@ -80,7 +80,8 @@ export declare enum InputTagErrorEnum {
     INPUT_LABEL = "INPUT_LABEL"
 }
 export declare enum ColTagErrorEnum {
-    COL_EMPTY = "COL_EMPTY"
+    COL_EMPTY = "COL_EMPTY",
+    LONG_COLS = "LONG_COLS"
 }
 export declare enum MenuErrorEnum {
     LONG_MENU = "LONG_MENU",
@@ -156,4 +157,3 @@ export declare type CB_TEST_TYPE = {
     group: string;
     desc: string;
 };
-//# sourceMappingURL=types.d.ts.map

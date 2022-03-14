@@ -46,9 +46,16 @@ const CBTests = () => {
   };
   return (
     <Box>
-      {cbTests.map((test: CB_TEST_TYPE) => {
+      {cbTests.map((test: CB_TEST_TYPE, i) => {
         return (
-          <Box p={4} borderWidth={1} marginTop={2} borderRadius={10} bg={bg}>
+          <Box
+            p={4}
+            borderWidth={1}
+            marginTop={2}
+            borderRadius={10}
+            bg={bg}
+            key={i}
+          >
             <Grid templateColumns="auto 40px" gap={6}>
               <Box>
                 <Heading

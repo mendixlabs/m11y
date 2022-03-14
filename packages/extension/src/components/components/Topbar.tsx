@@ -79,7 +79,12 @@ const Topbar = ({ type }: MAIN_VIEW_TYPE) => {
         </Text>
       </Box>
       <Box display="flex" alignItems="center">
-        <Box onClick={toggleColorMode} cursor="pointer">
+        <Box
+          onClick={toggleColorMode}
+          cursor="pointer"
+          display="flex"
+          alignItems="center"
+        >
           {colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}
           {mx ? (
             <Badge ml="2" colorScheme="teal">

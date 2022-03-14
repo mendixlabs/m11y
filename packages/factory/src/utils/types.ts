@@ -81,7 +81,8 @@ export enum InputTagErrorEnum {
     INPUT_LABEL = "INPUT_LABEL"
 }
 export enum ColTagErrorEnum {
-    COL_EMPTY = "COL_EMPTY"
+    COL_EMPTY = "COL_EMPTY",
+    LONG_COLS = "LONG_COLS"
 }
 export enum MenuErrorEnum {
     LONG_MENU = "LONG_MENU",

@@ -135,8 +135,8 @@ const CBTests = () => {
             }
         });
     };
-    return (react_2.default.createElement(react_1.Box, null, factory_1.cbTests.map((test) => {
-        return (react_2.default.createElement(react_1.Box, { p: 4, borderWidth: 1, marginTop: 2, borderRadius: 10, bg: bg },
+    return (react_2.default.createElement(react_1.Box, null, factory_1.cbTests.map((test, i) => {
+        return (react_2.default.createElement(react_1.Box, { p: 4, borderWidth: 1, marginTop: 2, borderRadius: 10, bg: bg, key: i },
             react_2.default.createElement(react_1.Grid, { templateColumns: "auto 40px", gap: 6 },
                 react_2.default.createElement(react_1.Box, null,
                     react_2.default.createElement(react_1.Heading, { size: "lg", fontWeight: "bold", textTransform: "uppercase", fontSize: "lg", letterSpacing: "wide" }, test.name),
@@ -462,7 +462,7 @@ const Topbar = ({ type }) => {
             react_2.default.createElement(react_1.Heading, { fontWeight: "bold", textTransform: "uppercase", letterSpacing: "wide" }, "M11y-Extension"),
             react_2.default.createElement(react_1.Text, { size: "xs" }, type === types_1.ENUM_VIEW_TYPE.POPUP && os && (react_2.default.createElement(MarkdownDisplay_1.default, { fontSize: '10' }, displayOS(os))))),
         react_2.default.createElement(react_1.Box, { display: "flex", alignItems: "center" },
-            react_2.default.createElement(react_1.Box, { onClick: toggleColorMode, cursor: "pointer" },
+            react_2.default.createElement(react_1.Box, { onClick: toggleColorMode, cursor: "pointer", display: "flex", alignItems: "center" },
                 colorMode === 'dark' ? react_2.default.createElement(icons_1.SunIcon, null) : react_2.default.createElement(icons_1.MoonIcon, null),
                 mx ? (react_2.default.createElement(react_1.Badge, { ml: "2", colorScheme: "teal" },
                     "Mendix Version: ", mx === null || mx === void 0 ? void 0 :
@@ -623,18 +623,22 @@ const Developers = () => {
                 react_2.default.createElement(layout_1.Heading, { size: "md", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "wide" }, "Warnings, Errors & Suggestions for Developers")),
             react_2.default.createElement(react_1.Box, null,
                 react_2.default.createElement(react_1.Button, { size: "sm", colorScheme: "teal", onClick: getAllErrors },
-                    react_2.default.createElement(icons_1.RepeatIcon, { size: "sm" })))),
+                    react_2.default.createElement(icons_1.RepeatIcon, { size: "sm", mr: "2" }),
+                    " Recheck"))),
         ((_a = state.errorList) === null || _a === void 0 ? void 0 : _a.length) ? (react_2.default.createElement(react_2.default.Fragment, null, state === null || state === void 0 ? void 0 : state.errorList.map((errorItem, i) => {
-            console.log(`errorItem`, errorItem);
             return (react_2.default.createElement(react_1.Box, { p: 4, borderWidth: 1, marginTop: 6, borderRadius: 10, key: i },
                 react_2.default.createElement(layout_1.Heading, { size: "lg", fontWeight: "bold", textTransform: "uppercase", fontSize: "lg", letterSpacing: "wide", color: "teal.600" },
                     "Issues with",
                     ' ',
-                    (0, factory_1.rationalizeTagInformation)(errorItem.tag).mendixName),
-                errorItem.errors.map((error, key) => {
-                    return (react_2.default.createElement("div", { key: key },
-                        react_2.default.createElement(DisplayWarnings_1.DisplayWarnings, { tag: errorItem.tag, error: error, showButtons: (0, factory_1.rationalizeTagInformation)(errorItem.tag).showButtons })));
-                })));
+                    (0, factory_1.rationalizeTagInformation)(errorItem.tag)
+                        .mendixName),
+                errorItem &&
+                    errorItem.errors &&
+                    (errorItem === null || errorItem === void 0 ? void 0 : errorItem.errors.map((error, key) => {
+                        return (react_2.default.createElement("div", { key: key },
+                            react_2.default.createElement(DisplayWarnings_1.DisplayWarnings, { tag: errorItem.tag, error: error, showButtons: (0, factory_1.rationalizeTagInformation)(errorItem.tag)
+                                    .showButtons })));
+                    }))));
         }))) : (react_2.default.createElement(react_2.default.Fragment, null,
             react_2.default.createElement(layout_1.Stack, null,
                 react_2.default.createElement(react_1.Skeleton, { height: "20px" }),
@@ -1154,15 +1158,17 @@ class ErrorWarning {
     _toggleClassName(allATags) {
         for (let index = 0; index < allATags.length; index++) {
             const { tag, errorType } = allATags[index];
+            let found = false;
             if (tag && tag.classList) {
-                let found = false;
+                // console.log("allATags", tag.classList);
                 tag.classList.forEach((className) => {
                     if (errorType == types_1.ErrorEnum.Error &&
                         className == "mx-bp-a11y-extension-error") {
+                        // console.log("Error", tag);
                         return (found = true);
                     }
-                    if (errorType == types_1.ErrorEnum.Warning &&
-                        className == "mx-bp-a11y-extension-warning") {
+                    if (errorType == types_1.ErrorEnum.Warning && className == "≈") {
+                        // console.log("Warning", tag);
                         return (found = true);
                     }
                 });
@@ -1251,6 +1257,7 @@ class ErrorWarning {
      * Toggles on an Off Class names that will show the error in the dom
      */
     seeErrorsOnType(errorEnumToTarget) {
+        // console.log("this.errorList", this.errorList, errorEnumToTarget);
         if (this.errorList) {
             if (this.errorList[errorEnumToTarget]) {
                 if (this.errorList[errorEnumToTarget].tags.length) {
@@ -1307,7 +1314,7 @@ class ErrorWarning {
             if (this.errorList[errorEnumToTarget]) {
                 if (this.errorList[errorEnumToTarget].tags.length) {
                     this.errorList[errorEnumToTarget].tags.map((tag, i) => {
-                        console.log(`--------------🔥 Error - ${i + 1} 👩🏽‍🚒 --------------`);
+                        console.log(`--------------🔥 Error (Hover Over Me)- ${i + 1} 👩🏽‍🚒 --------------`);
                         console.log(tag.tag);
                     });
                 }
@@ -1641,6 +1648,75 @@ exports.Menu_Tag = Menu_Tag;
 
 /***/ }),
 
+/***/ "../factory/dist/classes/Row_Tag.js":
+/*!******************************************!*\
+  !*** ../factory/dist/classes/Row_Tag.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Row_Tag = void 0;
+const ErrorWarning_1 = __webpack_require__(/*! ./ErrorWarning */ "../factory/dist/classes/ErrorWarning.js");
+const types_1 = __webpack_require__(/*! ../utils/types */ "../factory/dist/utils/types.js");
+const helpers_1 = __webpack_require__(/*! ../utils/helpers */ "../factory/dist/utils/helpers.js");
+class Row_Tag extends ErrorWarning_1.ErrorWarning {
+    /**
+     * Class For All A Tag Errors - Extends ErrorWarning
+     *
+     * @param tag -String of the Tag Name to Find
+     * @param autoStart - Auto run Checks Default true
+     * @returns Instance of ErrorsClass {allAErrorTags, allTags,errorList}
+     */
+    constructor(tag) {
+        super(tag);
+        // this._scanAllErrors(); // Get all errors on creation of Class
+    }
+    /**
+     * Function to get all elements in dom
+     * Either use super.getElementByClassName or super.getElementByTagName
+     */
+    _getAllATags() {
+        super.getElementByClassName;
+        const allTags = super.getElementByClassName();
+        this.allTags = allTags;
+        return allTags;
+    }
+    /**
+     * Scans DOM for All a Tags And List Errors (Add Checks for Errors here)
+     */
+    _scanAllErrors() {
+        const clientViewPortHeight = window.innerHeight;
+        for (let index = 0; index < this.allTags.length; index++) {
+            const tag = this.allTags[index];
+            if (tag) {
+                if (tag.children.length >= 2) {
+                    for (let childIndex = 0; childIndex < tag.children.length; childIndex++) {
+                        const child = tag.children[childIndex];
+                        if (child.clientHeight >= clientViewPortHeight * 1.5) {
+                            this._pushErrorToErrorList({
+                                tag,
+                                errorType: types_1.ErrorEnum.Warning,
+                                errorEnumToTarget: types_1.ColTagErrorEnum.LONG_COLS,
+                                errorDescription: (0, helpers_1._descriptions)(types_1.ColTagErrorEnum.LONG_COLS)
+                            });
+                        }
+                    }
+                }
+            }
+        }
+    }
+    getAllErrorsAndScan() {
+        this._getAllATags();
+        this._scanAllErrors();
+        return this.getAllErrors();
+    }
+}
+exports.Row_Tag = Row_Tag;
+//# sourceMappingURL=Row_Tag.js.map
+
+/***/ }),
+
 /***/ "../factory/dist/colourTests/CBFilter.js":
 /*!***********************************************!*\
   !*** ../factory/dist/colourTests/CBFilter.js ***!
@@ -1759,7 +1835,7 @@ exports.CBFilter = CBFilter;
 
 /// <reference types="chrome"/>
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ENUM_CBTestTypes = exports.cbTests = exports.rationalizeTagInformation = exports.injectCBTest = exports.H_Tag = exports.Col_Tag = exports.Menu_Tag = exports.ATagErrorList = exports.Input_Tag = exports.CBFilter = exports.Button_Tag = exports.Img_TagErrorList = exports.DataView_MainContainer = void 0;
+exports.ENUM_CBTestTypes = exports.cbTests = exports.rationalizeTagInformation = exports.injectCBTest = exports.Row_Tag = exports.H_Tag = exports.Col_Tag = exports.Menu_Tag = exports.ATagErrorList = exports.Input_Tag = exports.CBFilter = exports.Button_Tag = exports.Img_TagErrorList = exports.DataView_MainContainer = void 0;
 /**
  * Classes
  */
@@ -1781,6 +1857,8 @@ var Col_Tag_1 = __webpack_require__(/*! ./classes/Col_Tag */ "../factory/dist/cl
 Object.defineProperty(exports, "Col_Tag", ({ enumerable: true, get: function () { return Col_Tag_1.Col_Tag; } }));
 var H_Tag_1 = __webpack_require__(/*! ./classes/H_Tag */ "../factory/dist/classes/H_Tag.js");
 Object.defineProperty(exports, "H_Tag", ({ enumerable: true, get: function () { return H_Tag_1.H_Tag; } }));
+var Row_Tag_1 = __webpack_require__(/*! ./classes/Row_Tag */ "../factory/dist/classes/Row_Tag.js");
+Object.defineProperty(exports, "Row_Tag", ({ enumerable: true, get: function () { return Row_Tag_1.Row_Tag; } }));
 var injectHTML_1 = __webpack_require__(/*! ./utils/injectHTML */ "../factory/dist/utils/injectHTML.js");
 Object.defineProperty(exports, "injectCBTest", ({ enumerable: true, get: function () { return injectHTML_1.injectCBTest; } }));
 var helpers_1 = __webpack_require__(/*! ./utils/helpers */ "../factory/dist/utils/helpers.js");
@@ -1803,10 +1881,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.cbTests = exports._descriptions = exports.rationalizeTagInformation = exports._getCorrespondingEnum = exports.removeDuplicates = exports._compareCount = exports._compareErrorLength = void 0;
 const types_1 = __webpack_require__(/*! ./types */ "../factory/dist/utils/types.js");
 const _compareErrorLength = (a, b) => {
-    if (a.errors.length < b.errors.length) {
+    var _a, _b, _c, _d;
+    if (((_a = a === null || a === void 0 ? void 0 : a.errors) === null || _a === void 0 ? void 0 : _a.length) < ((_b = b === null || b === void 0 ? void 0 : b.errors) === null || _b === void 0 ? void 0 : _b.length)) {
         return 1;
     }
-    if (a.errors.length > b.errors.length) {
+    if (((_c = a === null || a === void 0 ? void 0 : a.errors) === null || _c === void 0 ? void 0 : _c.length) > ((_d = b === null || b === void 0 ? void 0 : b.errors) === null || _d === void 0 ? void 0 : _d.length)) {
         return -1;
     }
     return 0;
@@ -1831,6 +1910,8 @@ const _getCorrespondingEnum = (tag) => {
     switch (tag) {
         case "a":
             return types_1.ATagErrorEnum;
+        case "row":
+            return types_1.ColTagErrorEnum;
         case "button":
             return types_1.ButtonTagErrorEnum;
         case "img":
@@ -1909,6 +1990,11 @@ const rationalizeTagInformation = (tag) => {
                 mendixName: "Dataview/Layoutgrid",
                 showButtons: false
             };
+        case "row":
+            return {
+                mendixName: "Dataview/Layoutgrid (Row)",
+                showButtons: true
+            };
         default:
             return {
                 mendixName: "⚠️ No Corresponding Tag found",
@@ -1941,7 +2027,12 @@ const _descriptions = (r) => {
             };
         case types_1.ColTagErrorEnum.COL_EMPTY:
             return {
-                mendix: "ColTagErrorEnum.COL_EMPTY",
+                mendix: "Empty Columns should be avoided as Layout helper",
+                technical: "`.col` class names are added to layout grids to help with layout and responsiveness - Usually follows Bootstrap 4"
+            };
+        case types_1.ColTagErrorEnum.LONG_COLS:
+            return {
+                mendix: "Usage of Very long columns are to be avoided for help with Keyboard interactions",
                 technical: "`.col` class names are added to layout grids to help with layout and responsiveness - Usually follows Bootstrap 4"
             };
         case types_1.DataViewErrorEnum.BASE_DATA_VIEW:
@@ -1976,7 +2067,7 @@ const _descriptions = (r) => {
             };
         default:
             return {
-                mendix: "⚠️ No Corresponding Tag found",
+                mendix: "⚠️ No Corresponding Tag found (DESC)",
                 technical: "⚠️ No Corresponding Tag found"
             };
     }
@@ -2176,6 +2267,7 @@ var InputTagErrorEnum;
 var ColTagErrorEnum;
 (function (ColTagErrorEnum) {
     ColTagErrorEnum["COL_EMPTY"] = "COL_EMPTY";
+    ColTagErrorEnum["LONG_COLS"] = "LONG_COLS";
 })(ColTagErrorEnum = exports.ColTagErrorEnum || (exports.ColTagErrorEnum = {}));
 var MenuErrorEnum;
 (function (MenuErrorEnum) {

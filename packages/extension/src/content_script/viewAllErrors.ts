@@ -10,6 +10,7 @@ export const viewAError = (
     A_Class,
     H_Class,
     Img_Class,
+    Row_Class,
     Col_Class,
     Menu_Class,
     Input_Class,
@@ -18,21 +19,23 @@ export const viewAError = (
   } = allCurrentClasses;
   switch (tag) {
     case 'a':
-      return A_Class.seeErrorsOnType(errorToView?.errorEnumToTarget);
+      return A_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
+    case 'row':
+      return Row_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
     case 'button':
-      return Button_Class.seeErrorsOnType(errorToView?.errorEnumToTarget);
+      return Button_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
     case 'img':
-      return Img_Class.seeErrorsOnType(errorToView?.errorEnumToTarget);
+      return Img_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
     case 'col':
-      return Col_Class.seeErrorsOnType(errorToView?.errorEnumToTarget);
+      return Col_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
     case 'h1':
-      return H_Class.seeErrorsOnType(errorToView?.errorEnumToTarget);
+      return H_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
     case 'input':
-      return Input_Class.seeErrorsOnType(errorToView?.errorEnumToTarget);
+      return Input_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
     case 'textarea':
-      return TextArea_Class.seeErrorsOnType(errorToView?.errorEnumToTarget);
+      return TextArea_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
     case '[role="menu"]':
-      return Menu_Class.seeErrorsOnType(errorToView?.errorEnumToTarget);
+      return Menu_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
     default:
       break;
   }

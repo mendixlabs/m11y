@@ -28,16 +28,31 @@ const viewAllErrors_1 = __webpack_require__(/*! ./viewAllErrors */ "./src/conten
 const errorsInConsole_1 = __webpack_require__(/*! ./errorsInConsole */ "./src/content_script/errorsInConsole.ts");
 const factory_2 = __webpack_require__(/*! @m11y/factory */ "../factory/dist/index.js");
 let mxWidow;
-const H_Class = new factory_1.H_Tag('h1');
-const Col_Class = new factory_1.Col_Tag('col');
-const A_Class = new factory_1.ATagErrorList('a');
-const Input_Class = new factory_1.Input_Tag('input');
-const Button_Class = new factory_1.Button_Tag('button');
-const Img_Class = new factory_1.Img_TagErrorList('img');
-const TextArea_Class = new factory_1.Input_Tag('textarea');
-const Menu_Class = new factory_1.Menu_Tag('[role="menu"]');
-const DataView_Class = new factory_1.DataView_MainContainer('mx-placeholder');
-const CBFilter_Class = new factory_1.CBFilter();
+let H_Class = new factory_1.H_Tag('h1');
+let Col_Class = new factory_1.Col_Tag('col');
+let A_Class = new factory_1.ATagErrorList('a');
+let Input_Class = new factory_1.Input_Tag('input');
+let Button_Class = new factory_1.Button_Tag('button');
+let Img_Class = new factory_1.Img_TagErrorList('img');
+let TextArea_Class = new factory_1.Input_Tag('textarea');
+let Menu_Class = new factory_1.Menu_Tag('[role="menu"]');
+let Row_Class = new factory_1.Row_Tag('row');
+let DataView_Class = new factory_1.DataView_MainContainer('mx-placeholder');
+let CBFilter_Class = new factory_1.CBFilter();
+// THis is overkill - Doing it prop is causing issues - Quick Fix
+function main() {
+    H_Class = new factory_1.H_Tag('h1');
+    Col_Class = new factory_1.Col_Tag('col');
+    A_Class = new factory_1.ATagErrorList('a');
+    Input_Class = new factory_1.Input_Tag('input');
+    Button_Class = new factory_1.Button_Tag('button');
+    Img_Class = new factory_1.Img_TagErrorList('img');
+    TextArea_Class = new factory_1.Input_Tag('textarea');
+    Menu_Class = new factory_1.Menu_Tag('[role="menu"]');
+    Row_Class = new factory_1.Row_Tag('row');
+    DataView_Class = new factory_1.DataView_MainContainer('mx-placeholder');
+    CBFilter_Class = new factory_1.CBFilter();
+}
 (function () {
     return __awaiter(this, void 0, void 0, function* () {
         // @ts-ignore
@@ -47,6 +62,7 @@ const CBFilter_Class = new factory_1.CBFilter();
 const allCurrentClasses = {
     A_Class,
     H_Class,
+    Row_Class,
     Img_Class,
     Col_Class,
     Menu_Class,
@@ -56,9 +72,10 @@ const allCurrentClasses = {
     DataView_Class,
 };
 (0, factory_2.injectCBTest)();
-chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (msg, _sender, sendResponse) {
     // Run All checks
     if (msg.message === types_1.EnumContentScripMessages.GET_ALL_ERRORS) {
+        main();
         const allErrors = (0, getAllErrors_1.getAllErrors)({ allCurrentClasses });
         sendResponse(allErrors);
     }
@@ -113,10 +130,14 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.logAllErrorsInConsole = void 0;
 const logAllErrorsInConsole = (tag, errorToView, allCurrentClasses) => {
-    const { A_Class, H_Class, Img_Class, Col_Class, Input_Class, Button_Class, TextArea_Class, } = allCurrentClasses;
+    const { A_Class, H_Class, Img_Class, Row_Class, Col_Class, Input_Class, Button_Class, TextArea_Class, } = allCurrentClasses;
     switch (tag) {
         case 'a':
             return A_Class.logOutAllErrors({
+                errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
+            });
+        case 'row':
+            return Row_Class.logOutAllErrors({
                 errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
             });
         case 'button':
@@ -132,15 +153,15 @@ const logAllErrorsInConsole = (tag, errorToView, allCurrentClasses) => {
                 errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
             });
         case 'h1':
-            return H_Class.logOutAllErrors({
+            return H_Class === null || H_Class === void 0 ? void 0 : H_Class.logOutAllErrors({
                 errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
             });
         case 'input':
-            return Input_Class.logOutAllErrors({
+            return Input_Class === null || Input_Class === void 0 ? void 0 : Input_Class.logOutAllErrors({
                 errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
             });
         case 'textarea':
-            return TextArea_Class.logOutAllErrors({
+            return TextArea_Class === null || TextArea_Class === void 0 ? void 0 : TextArea_Class.logOutAllErrors({
                 errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
             });
         default:
@@ -163,53 +184,67 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getAllErrors = void 0;
 const helpers_1 = __webpack_require__(/*! ../utils/helpers */ "./src/utils/helpers.ts");
 const getAllErrors = ({ allCurrentClasses }) => {
-    const { A_Class, H_Class, Img_Class, Col_Class, Menu_Class, Input_Class, Button_Class, TextArea_Class, DataView_Class, } = allCurrentClasses;
-    const a_Errors = A_Class.getAllErrorsAndScan();
-    const h_Errors = H_Class.getAllErrorsAndScan();
-    const img_Errors = Img_Class.getAllErrorsAndScan();
-    const col_Errors = Col_Class.getAllErrorsAndScan();
-    const input_Errors = Input_Class.getAllErrorsAndScan();
-    const button_Errors = Button_Class.getAllErrorsAndScan();
-    const menuClass_Errors = Menu_Class.getAllErrorsAndScan();
-    const textArea_Errors = TextArea_Class.getAllErrorsAndScan();
-    const dataView_Errors = DataView_Class.getAllErrorsAndScan();
+    const { A_Class, H_Class, Img_Class, Col_Class, Row_Class, Menu_Class, Input_Class, Button_Class, TextArea_Class, DataView_Class, } = allCurrentClasses;
+    const a_Errors = A_Class === null || A_Class === void 0 ? void 0 : A_Class.getAllErrorsAndScan();
+    const h_Errors = H_Class === null || H_Class === void 0 ? void 0 : H_Class.getAllErrorsAndScan();
+    const row_Errors = Row_Class === null || Row_Class === void 0 ? void 0 : Row_Class.getAllErrorsAndScan();
+    const img_Errors = Img_Class === null || Img_Class === void 0 ? void 0 : Img_Class.getAllErrorsAndScan();
+    const col_Errors = Col_Class === null || Col_Class === void 0 ? void 0 : Col_Class.getAllErrorsAndScan();
+    const input_Errors = Input_Class === null || Input_Class === void 0 ? void 0 : Input_Class.getAllErrorsAndScan();
+    const button_Errors = Button_Class === null || Button_Class === void 0 ? void 0 : Button_Class.getAllErrorsAndScan();
+    const menuClass_Errors = Menu_Class === null || Menu_Class === void 0 ? void 0 : Menu_Class.getAllErrorsAndScan();
+    const textArea_Errors = TextArea_Class === null || TextArea_Class === void 0 ? void 0 : TextArea_Class.getAllErrorsAndScan();
+    const dataView_Errors = DataView_Class === null || DataView_Class === void 0 ? void 0 : DataView_Class.getAllErrorsAndScan();
     const response = [
-        { tag: H_Class.tag, errors: h_Errors.errors, count: h_Errors.totalError },
-        { tag: A_Class.tag, errors: a_Errors.errors, count: a_Errors.totalError },
         {
-            tag: Img_Class.tag,
-            errors: img_Errors.errors,
-            count: img_Errors.totalError,
+            tag: H_Class === null || H_Class === void 0 ? void 0 : H_Class.tag,
+            errors: h_Errors === null || h_Errors === void 0 ? void 0 : h_Errors.errors,
+            count: h_Errors === null || h_Errors === void 0 ? void 0 : h_Errors.totalError,
         },
         {
-            tag: Col_Class.tag,
-            errors: col_Errors.errors,
-            count: col_Errors.totalError,
+            tag: A_Class === null || A_Class === void 0 ? void 0 : A_Class.tag,
+            errors: a_Errors === null || a_Errors === void 0 ? void 0 : a_Errors.errors,
+            count: a_Errors === null || a_Errors === void 0 ? void 0 : a_Errors.totalError,
         },
         {
-            tag: Input_Class.tag,
-            errors: input_Errors.errors,
-            count: input_Errors.totalError,
+            tag: Row_Class === null || Row_Class === void 0 ? void 0 : Row_Class.tag,
+            errors: row_Errors === null || row_Errors === void 0 ? void 0 : row_Errors.errors,
+            count: row_Errors === null || row_Errors === void 0 ? void 0 : row_Errors.totalError,
         },
         {
-            tag: Button_Class.tag,
-            errors: button_Errors.errors,
-            count: button_Errors.totalError,
+            tag: Img_Class === null || Img_Class === void 0 ? void 0 : Img_Class.tag,
+            errors: img_Errors === null || img_Errors === void 0 ? void 0 : img_Errors.errors,
+            count: img_Errors === null || img_Errors === void 0 ? void 0 : img_Errors.totalError,
         },
         {
-            tag: Menu_Class.tag,
-            errors: menuClass_Errors.errors,
-            count: menuClass_Errors.totalError,
+            tag: Col_Class === null || Col_Class === void 0 ? void 0 : Col_Class.tag,
+            errors: col_Errors === null || col_Errors === void 0 ? void 0 : col_Errors.errors,
+            count: col_Errors === null || col_Errors === void 0 ? void 0 : col_Errors.totalError,
         },
         {
-            tag: TextArea_Class.tag,
-            errors: textArea_Errors.errors,
-            count: textArea_Errors.totalError,
+            tag: Input_Class === null || Input_Class === void 0 ? void 0 : Input_Class.tag,
+            errors: input_Errors === null || input_Errors === void 0 ? void 0 : input_Errors.errors,
+            count: input_Errors === null || input_Errors === void 0 ? void 0 : input_Errors.totalError,
         },
         {
-            tag: DataView_Class.tag,
-            errors: dataView_Errors.errors,
-            count: dataView_Errors.totalError,
+            tag: Button_Class === null || Button_Class === void 0 ? void 0 : Button_Class.tag,
+            errors: button_Errors === null || button_Errors === void 0 ? void 0 : button_Errors.errors,
+            count: button_Errors === null || button_Errors === void 0 ? void 0 : button_Errors.totalError,
+        },
+        {
+            tag: Menu_Class === null || Menu_Class === void 0 ? void 0 : Menu_Class.tag,
+            errors: menuClass_Errors === null || menuClass_Errors === void 0 ? void 0 : menuClass_Errors.errors,
+            count: menuClass_Errors === null || menuClass_Errors === void 0 ? void 0 : menuClass_Errors.totalError,
+        },
+        {
+            tag: TextArea_Class === null || TextArea_Class === void 0 ? void 0 : TextArea_Class.tag,
+            errors: textArea_Errors === null || textArea_Errors === void 0 ? void 0 : textArea_Errors.errors,
+            count: textArea_Errors === null || textArea_Errors === void 0 ? void 0 : textArea_Errors.totalError,
+        },
+        {
+            tag: DataView_Class === null || DataView_Class === void 0 ? void 0 : DataView_Class.tag,
+            errors: dataView_Errors === null || dataView_Errors === void 0 ? void 0 : dataView_Errors.errors,
+            count: dataView_Errors === null || dataView_Errors === void 0 ? void 0 : dataView_Errors.totalError,
         },
     ];
     const sortListEmptyAtBottom = response.sort(helpers_1._compareErrorLength);
@@ -231,40 +266,45 @@ exports.getAllErrors = getAllErrors;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.navigateThroughErrors = void 0;
 const navigateThroughErrors = (tag, errorToView, step, allCurrentClasses) => {
-    const { A_Class, H_Class, Img_Class, Col_Class, Input_Class, Button_Class, TextArea_Class, } = allCurrentClasses;
+    const { A_Class, H_Class, Img_Class, Row_Class, Col_Class, Input_Class, Button_Class, TextArea_Class, } = allCurrentClasses;
     switch (tag) {
         case 'a':
-            return A_Class.stepThrough({
+            return A_Class === null || A_Class === void 0 ? void 0 : A_Class.stepThrough({
                 errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
                 step,
             });
         case 'button':
-            return Button_Class.stepThrough({
+            return Button_Class === null || Button_Class === void 0 ? void 0 : Button_Class.stepThrough({
                 errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
                 step,
             });
         case 'img':
-            return Img_Class.stepThrough({
+            return Img_Class === null || Img_Class === void 0 ? void 0 : Img_Class.stepThrough({
                 errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
                 step,
             });
         case 'col':
-            return Col_Class.stepThrough({
+            return Col_Class === null || Col_Class === void 0 ? void 0 : Col_Class.stepThrough({
+                errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
+                step,
+            });
+        case 'row':
+            return Row_Class === null || Row_Class === void 0 ? void 0 : Row_Class.stepThrough({
                 errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
                 step,
             });
         case 'h1':
-            return H_Class.stepThrough({
+            return H_Class === null || H_Class === void 0 ? void 0 : H_Class.stepThrough({
                 errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
                 step,
             });
         case 'input':
-            return Input_Class.stepThrough({
+            return Input_Class === null || Input_Class === void 0 ? void 0 : Input_Class.stepThrough({
                 errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
                 step,
             });
         case 'textarea':
-            return TextArea_Class.stepThrough({
+            return TextArea_Class === null || TextArea_Class === void 0 ? void 0 : TextArea_Class.stepThrough({
                 errorEnumToTarget: errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget,
                 step,
             });
@@ -397,24 +437,26 @@ exports.runInPageContext = runInPageContext;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.viewAError = void 0;
 const viewAError = (tag, errorToView, allCurrentClasses) => {
-    const { A_Class, H_Class, Img_Class, Col_Class, Menu_Class, Input_Class, Button_Class, TextArea_Class, } = allCurrentClasses;
+    const { A_Class, H_Class, Img_Class, Row_Class, Col_Class, Menu_Class, Input_Class, Button_Class, TextArea_Class, } = allCurrentClasses;
     switch (tag) {
         case 'a':
-            return A_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
+            return A_Class === null || A_Class === void 0 ? void 0 : A_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
+        case 'row':
+            return Row_Class === null || Row_Class === void 0 ? void 0 : Row_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
         case 'button':
-            return Button_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
+            return Button_Class === null || Button_Class === void 0 ? void 0 : Button_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
         case 'img':
-            return Img_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
+            return Img_Class === null || Img_Class === void 0 ? void 0 : Img_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
         case 'col':
-            return Col_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
+            return Col_Class === null || Col_Class === void 0 ? void 0 : Col_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
         case 'h1':
-            return H_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
+            return H_Class === null || H_Class === void 0 ? void 0 : H_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
         case 'input':
-            return Input_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
+            return Input_Class === null || Input_Class === void 0 ? void 0 : Input_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
         case 'textarea':
-            return TextArea_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
+            return TextArea_Class === null || TextArea_Class === void 0 ? void 0 : TextArea_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
         case '[role="menu"]':
-            return Menu_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
+            return Menu_Class === null || Menu_Class === void 0 ? void 0 : Menu_Class.seeErrorsOnType(errorToView === null || errorToView === void 0 ? void 0 : errorToView.errorEnumToTarget);
         default:
             break;
     }
@@ -435,10 +477,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.cbTests = exports._getCorrespondingEnum = exports.removeDuplicates = exports._compareCount = exports._compareErrorLength = void 0;
 const types_1 = __webpack_require__(/*! ../utils/types */ "./src/utils/types.ts");
 const _compareErrorLength = (a, b) => {
-    if (a.errors.length < b.errors.length) {
+    var _a, _b, _c, _d;
+    if (((_a = a.errors) === null || _a === void 0 ? void 0 : _a.length) < ((_b = b.errors) === null || _b === void 0 ? void 0 : _b.length)) {
         return 1;
     }
-    if (a.errors.length > b.errors.length) {
+    if (((_c = a.errors) === null || _c === void 0 ? void 0 : _c.length) > ((_d = b.errors) === null || _d === void 0 ? void 0 : _d.length)) {
         return -1;
     }
     return 0;
@@ -963,15 +1006,17 @@ class ErrorWarning {
     _toggleClassName(allATags) {
         for (let index = 0; index < allATags.length; index++) {
             const { tag, errorType } = allATags[index];
+            let found = false;
             if (tag && tag.classList) {
-                let found = false;
+                // console.log("allATags", tag.classList);
                 tag.classList.forEach((className) => {
                     if (errorType == types_1.ErrorEnum.Error &&
                         className == "mx-bp-a11y-extension-error") {
+                        // console.log("Error", tag);
                         return (found = true);
                     }
-                    if (errorType == types_1.ErrorEnum.Warning &&
-                        className == "mx-bp-a11y-extension-warning") {
+                    if (errorType == types_1.ErrorEnum.Warning && className == "≈") {
+                        // console.log("Warning", tag);
                         return (found = true);
                     }
                 });
@@ -1060,6 +1105,7 @@ class ErrorWarning {
      * Toggles on an Off Class names that will show the error in the dom
      */
     seeErrorsOnType(errorEnumToTarget) {
+        // console.log("this.errorList", this.errorList, errorEnumToTarget);
         if (this.errorList) {
             if (this.errorList[errorEnumToTarget]) {
                 if (this.errorList[errorEnumToTarget].tags.length) {
@@ -1116,7 +1162,7 @@ class ErrorWarning {
             if (this.errorList[errorEnumToTarget]) {
                 if (this.errorList[errorEnumToTarget].tags.length) {
                     this.errorList[errorEnumToTarget].tags.map((tag, i) => {
-                        console.log(`--------------🔥 Error - ${i + 1} 👩🏽‍🚒 --------------`);
+                        console.log(`--------------🔥 Error (Hover Over Me)- ${i + 1} 👩🏽‍🚒 --------------`);
                         console.log(tag.tag);
                     });
                 }
@@ -1450,6 +1496,75 @@ exports.Menu_Tag = Menu_Tag;
 
 /***/ }),
 
+/***/ "../factory/dist/classes/Row_Tag.js":
+/*!******************************************!*\
+  !*** ../factory/dist/classes/Row_Tag.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Row_Tag = void 0;
+const ErrorWarning_1 = __webpack_require__(/*! ./ErrorWarning */ "../factory/dist/classes/ErrorWarning.js");
+const types_1 = __webpack_require__(/*! ../utils/types */ "../factory/dist/utils/types.js");
+const helpers_1 = __webpack_require__(/*! ../utils/helpers */ "../factory/dist/utils/helpers.js");
+class Row_Tag extends ErrorWarning_1.ErrorWarning {
+    /**
+     * Class For All A Tag Errors - Extends ErrorWarning
+     *
+     * @param tag -String of the Tag Name to Find
+     * @param autoStart - Auto run Checks Default true
+     * @returns Instance of ErrorsClass {allAErrorTags, allTags,errorList}
+     */
+    constructor(tag) {
+        super(tag);
+        // this._scanAllErrors(); // Get all errors on creation of Class
+    }
+    /**
+     * Function to get all elements in dom
+     * Either use super.getElementByClassName or super.getElementByTagName
+     */
+    _getAllATags() {
+        super.getElementByClassName;
+        const allTags = super.getElementByClassName();
+        this.allTags = allTags;
+        return allTags;
+    }
+    /**
+     * Scans DOM for All a Tags And List Errors (Add Checks for Errors here)
+     */
+    _scanAllErrors() {
+        const clientViewPortHeight = window.innerHeight;
+        for (let index = 0; index < this.allTags.length; index++) {
+            const tag = this.allTags[index];
+            if (tag) {
+                if (tag.children.length >= 2) {
+                    for (let childIndex = 0; childIndex < tag.children.length; childIndex++) {
+                        const child = tag.children[childIndex];
+                        if (child.clientHeight >= clientViewPortHeight * 1.5) {
+                            this._pushErrorToErrorList({
+                                tag,
+                                errorType: types_1.ErrorEnum.Warning,
+                                errorEnumToTarget: types_1.ColTagErrorEnum.LONG_COLS,
+                                errorDescription: (0, helpers_1._descriptions)(types_1.ColTagErrorEnum.LONG_COLS)
+                            });
+                        }
+                    }
+                }
+            }
+        }
+    }
+    getAllErrorsAndScan() {
+        this._getAllATags();
+        this._scanAllErrors();
+        return this.getAllErrors();
+    }
+}
+exports.Row_Tag = Row_Tag;
+//# sourceMappingURL=Row_Tag.js.map
+
+/***/ }),
+
 /***/ "../factory/dist/colourTests/CBFilter.js":
 /*!***********************************************!*\
   !*** ../factory/dist/colourTests/CBFilter.js ***!
@@ -1568,7 +1683,7 @@ exports.CBFilter = CBFilter;
 
 /// <reference types="chrome"/>
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ENUM_CBTestTypes = exports.cbTests = exports.rationalizeTagInformation = exports.injectCBTest = exports.H_Tag = exports.Col_Tag = exports.Menu_Tag = exports.ATagErrorList = exports.Input_Tag = exports.CBFilter = exports.Button_Tag = exports.Img_TagErrorList = exports.DataView_MainContainer = void 0;
+exports.ENUM_CBTestTypes = exports.cbTests = exports.rationalizeTagInformation = exports.injectCBTest = exports.Row_Tag = exports.H_Tag = exports.Col_Tag = exports.Menu_Tag = exports.ATagErrorList = exports.Input_Tag = exports.CBFilter = exports.Button_Tag = exports.Img_TagErrorList = exports.DataView_MainContainer = void 0;
 /**
  * Classes
  */
@@ -1590,6 +1705,8 @@ var Col_Tag_1 = __webpack_require__(/*! ./classes/Col_Tag */ "../factory/dist/cl
 Object.defineProperty(exports, "Col_Tag", ({ enumerable: true, get: function () { return Col_Tag_1.Col_Tag; } }));
 var H_Tag_1 = __webpack_require__(/*! ./classes/H_Tag */ "../factory/dist/classes/H_Tag.js");
 Object.defineProperty(exports, "H_Tag", ({ enumerable: true, get: function () { return H_Tag_1.H_Tag; } }));
+var Row_Tag_1 = __webpack_require__(/*! ./classes/Row_Tag */ "../factory/dist/classes/Row_Tag.js");
+Object.defineProperty(exports, "Row_Tag", ({ enumerable: true, get: function () { return Row_Tag_1.Row_Tag; } }));
 var injectHTML_1 = __webpack_require__(/*! ./utils/injectHTML */ "../factory/dist/utils/injectHTML.js");
 Object.defineProperty(exports, "injectCBTest", ({ enumerable: true, get: function () { return injectHTML_1.injectCBTest; } }));
 var helpers_1 = __webpack_require__(/*! ./utils/helpers */ "../factory/dist/utils/helpers.js");
@@ -1612,10 +1729,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.cbTests = exports._descriptions = exports.rationalizeTagInformation = exports._getCorrespondingEnum = exports.removeDuplicates = exports._compareCount = exports._compareErrorLength = void 0;
 const types_1 = __webpack_require__(/*! ./types */ "../factory/dist/utils/types.js");
 const _compareErrorLength = (a, b) => {
-    if (a.errors.length < b.errors.length) {
+    var _a, _b, _c, _d;
+    if (((_a = a === null || a === void 0 ? void 0 : a.errors) === null || _a === void 0 ? void 0 : _a.length) < ((_b = b === null || b === void 0 ? void 0 : b.errors) === null || _b === void 0 ? void 0 : _b.length)) {
         return 1;
     }
-    if (a.errors.length > b.errors.length) {
+    if (((_c = a === null || a === void 0 ? void 0 : a.errors) === null || _c === void 0 ? void 0 : _c.length) > ((_d = b === null || b === void 0 ? void 0 : b.errors) === null || _d === void 0 ? void 0 : _d.length)) {
         return -1;
     }
     return 0;
@@ -1640,6 +1758,8 @@ const _getCorrespondingEnum = (tag) => {
     switch (tag) {
         case "a":
             return types_1.ATagErrorEnum;
+        case "row":
+            return types_1.ColTagErrorEnum;
         case "button":
             return types_1.ButtonTagErrorEnum;
         case "img":
@@ -1718,6 +1838,11 @@ const rationalizeTagInformation = (tag) => {
                 mendixName: "Dataview/Layoutgrid",
                 showButtons: false
             };
+        case "row":
+            return {
+                mendixName: "Dataview/Layoutgrid (Row)",
+                showButtons: true
+            };
         default:
             return {
                 mendixName: "⚠️ No Corresponding Tag found",
@@ -1750,7 +1875,12 @@ const _descriptions = (r) => {
             };
         case types_1.ColTagErrorEnum.COL_EMPTY:
             return {
-                mendix: "ColTagErrorEnum.COL_EMPTY",
+                mendix: "Empty Columns should be avoided as Layout helper",
+                technical: "`.col` class names are added to layout grids to help with layout and responsiveness - Usually follows Bootstrap 4"
+            };
+        case types_1.ColTagErrorEnum.LONG_COLS:
+            return {
+                mendix: "Usage of Very long columns are to be avoided for help with Keyboard interactions",
                 technical: "`.col` class names are added to layout grids to help with layout and responsiveness - Usually follows Bootstrap 4"
             };
         case types_1.DataViewErrorEnum.BASE_DATA_VIEW:
@@ -1785,7 +1915,7 @@ const _descriptions = (r) => {
             };
         default:
             return {
-                mendix: "⚠️ No Corresponding Tag found",
+                mendix: "⚠️ No Corresponding Tag found (DESC)",
                 technical: "⚠️ No Corresponding Tag found"
             };
     }
@@ -1985,6 +2115,7 @@ var InputTagErrorEnum;
 var ColTagErrorEnum;
 (function (ColTagErrorEnum) {
     ColTagErrorEnum["COL_EMPTY"] = "COL_EMPTY";
+    ColTagErrorEnum["LONG_COLS"] = "LONG_COLS";
 })(ColTagErrorEnum = exports.ColTagErrorEnum || (exports.ColTagErrorEnum = {}));
 var MenuErrorEnum;
 (function (MenuErrorEnum) {

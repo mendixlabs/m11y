@@ -52,19 +52,19 @@ export class ErrorWarning {
     protected _toggleClassName(allATags: CountedErrorList[]): void {
         for (let index = 0; index < allATags.length; index++) {
             const { tag, errorType } = allATags[index];
+            let found = false;
             if (tag && tag.classList) {
-                let found = false;
+                // console.log("allATags", tag.classList);
                 tag.classList.forEach((className: string) => {
                     if (
                         errorType == ErrorEnum.Error &&
                         className == "mx-bp-a11y-extension-error"
                     ) {
+                        // console.log("Error", tag);
                         return (found = true);
                     }
-                    if (
-                        errorType == ErrorEnum.Warning &&
-                        className == "mx-bp-a11y-extension-warning"
-                    ) {
+                    if (errorType == ErrorEnum.Warning && className == "≈") {
+                        // console.log("Warning", tag);
                         return (found = true);
                     }
                 });
@@ -166,6 +166,7 @@ export class ErrorWarning {
      * Toggles on an Off Class names that will show the error in the dom
      */
     public seeErrorsOnType(errorEnumToTarget: AllErrorEnumTypes): void {
+        // console.log("this.errorList", this.errorList, errorEnumToTarget);
         if (this.errorList) {
             if (this.errorList[errorEnumToTarget]) {
                 if (this.errorList[errorEnumToTarget].tags.length) {
@@ -248,7 +249,7 @@ export class ErrorWarning {
                 if (this.errorList[errorEnumToTarget].tags.length) {
                     this.errorList[errorEnumToTarget].tags.map((tag, i) => {
                         console.log(
-                            `--------------🔥 Error - ${
+                            `--------------🔥 Error (Hover Over Me)- ${
                                 i + 1
                             } 👩🏽‍🚒 --------------`
                         );

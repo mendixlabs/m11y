@@ -49,14 +49,13 @@ const Developers = () => {
         </Box>
         <Box>
           <Button size="sm" colorScheme="teal" onClick={getAllErrors}>
-            <RepeatIcon size="sm" />
+            <RepeatIcon size="sm" mr="2" /> Recheck
           </Button>
         </Box>
       </Flex>
       {state.errorList?.length ? (
         <>
           {state?.errorList.map((errorItem, i) => {
-            console.log(`errorItem`, errorItem);
             return (
               <Box
                 p={4}
@@ -74,21 +73,27 @@ const Developers = () => {
                   color="teal.600"
                 >
                   Issues with{' '}
-                  {rationalizeTagInformation(errorItem.tag).mendixName}
+                  {
+                    rationalizeTagInformation(errorItem.tag as string)
+                      .mendixName
+                  }
                 </Heading>
-                {errorItem.errors.map((error, key) => {
-                  return (
-                    <div key={key}>
-                      <DisplayWarnings
-                        tag={errorItem.tag}
-                        error={error}
-                        showButtons={
-                          rationalizeTagInformation(errorItem.tag).showButtons
-                        }
-                      />
-                    </div>
-                  );
-                })}
+                {errorItem &&
+                  errorItem.errors &&
+                  errorItem?.errors.map((error, key) => {
+                    return (
+                      <div key={key}>
+                        <DisplayWarnings
+                          tag={errorItem.tag as string}
+                          error={error}
+                          showButtons={
+                            rationalizeTagInformation(errorItem.tag as string)
+                              .showButtons
+                          }
+                        />
+                      </div>
+                    );
+                  })}
               </Box>
             );
           })}

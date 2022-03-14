@@ -11,6 +11,7 @@ export const navigateThroughErrors = (
     A_Class,
     H_Class,
     Img_Class,
+    Row_Class,
     Col_Class,
     Input_Class,
     Button_Class,
@@ -19,37 +20,42 @@ export const navigateThroughErrors = (
 
   switch (tag) {
     case 'a':
-      return A_Class.stepThrough({
+      return A_Class?.stepThrough({
         errorEnumToTarget: errorToView?.errorEnumToTarget,
         step,
       });
     case 'button':
-      return Button_Class.stepThrough({
+      return Button_Class?.stepThrough({
         errorEnumToTarget: errorToView?.errorEnumToTarget,
         step,
       });
     case 'img':
-      return Img_Class.stepThrough({
+      return Img_Class?.stepThrough({
         errorEnumToTarget: errorToView?.errorEnumToTarget,
         step,
       });
     case 'col':
-      return Col_Class.stepThrough({
+      return Col_Class?.stepThrough({
+        errorEnumToTarget: errorToView?.errorEnumToTarget,
+        step,
+      });
+    case 'row':
+      return Row_Class?.stepThrough({
         errorEnumToTarget: errorToView?.errorEnumToTarget,
         step,
       });
     case 'h1':
-      return H_Class.stepThrough({
+      return H_Class?.stepThrough({
         errorEnumToTarget: errorToView?.errorEnumToTarget,
         step,
       });
     case 'input':
-      return Input_Class.stepThrough({
+      return Input_Class?.stepThrough({
         errorEnumToTarget: errorToView?.errorEnumToTarget,
         step,
       });
     case 'textarea':
-      return TextArea_Class.stepThrough({
+      return TextArea_Class?.stepThrough({
         errorEnumToTarget: errorToView?.errorEnumToTarget,
         step,
       });

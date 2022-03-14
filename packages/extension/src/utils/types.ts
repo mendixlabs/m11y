@@ -8,6 +8,7 @@ import {
   ErrorList,
   Button_Tag,
   DataView_MainContainer,
+  Row_Tag,
 } from '@m11y/factory';
 
 export interface IContentScriptMessage {
@@ -122,9 +123,9 @@ export interface I_MX_WINDOW {
   session: any;
 }
 export interface ReturnErrorList {
-  tag: string;
-  count: number;
-  errors: ErrorList[];
+  tag?: string;
+  count?: number;
+  errors?: ErrorList[];
 }
 export interface IStateList {
   errorList?: ReturnErrorList[];
@@ -176,15 +177,16 @@ export type descriptionsType = {
 };
 
 export type AllClasses_Types = {
-  A_Class: ATagErrorList;
-  H_Class: H_Tag;
-  Img_Class: Img_TagErrorList;
-  Col_Class: Col_Tag;
-  Menu_Class: Menu_Tag;
-  Input_Class: Input_Tag;
-  Button_Class: Button_Tag;
-  TextArea_Class: Input_Tag;
-  DataView_Class: DataView_MainContainer;
+  A_Class?: ATagErrorList;
+  H_Class?: H_Tag;
+  Row_Class?: Row_Tag;
+  Img_Class?: Img_TagErrorList;
+  Col_Class?: Col_Tag;
+  Menu_Class?: Menu_Tag;
+  Input_Class?: Input_Tag;
+  Button_Class?: Button_Tag;
+  TextArea_Class?: Input_Tag;
+  DataView_Class?: DataView_MainContainer;
 };
 
 export type GetAllErrors_TYPE = {

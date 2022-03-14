@@ -85,6 +85,7 @@ Track current Project status <a href='https://github.com/mendixlabs/m11y/project
 - Multiple h1 checks
 - Image Alt tag check
 - Input/Textarea must have a Label
+- Long `.col` check to prevent long tabs
 - Long Menu helper (Skip navigation)
 
 ## Install Locally

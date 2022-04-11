@@ -29,7 +29,7 @@ export class Button_Tag extends ErrorWarning {
         for (let index = 0; index < this.allTags.length; index++) {
             const tag = this.allTags[index] as HTMLButtonElement;
             if (tag) {
-                if (!tag.title && !tag.innerText) {
+                if (!tag.title && !tag.innerText && !tag.ariaLabel) {
                     this._pushErrorToErrorList({
                         tag,
                         errorType: ErrorEnum.Error,

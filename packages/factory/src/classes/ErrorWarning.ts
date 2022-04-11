@@ -153,9 +153,9 @@ export class ErrorWarning {
                 rationalizeErrorList.push(errorList[item]);
             }
         }
-        const totalError = eval(countAllTagErrors.join("+"));
+        // const totalError = eval(countAllTagErrors.join("+"));
 
-        return { errors: rationalizeErrorList, totalError };
+        return { errors: rationalizeErrorList, totalError: 0 };
     }
 
     // ********************

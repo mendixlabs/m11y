@@ -1,41 +1,32 @@
 {
-  "manifest_version": 2,
-
+  "manifest_version": 3,
   "name": "M11Y",
   "description": "Mendix Best Practices and A11Y Extension",
   "version": "1.0",
-
-  "options_ui": {
-    "page": "options.html",
-    "chrome_style": true
+  "background": {
+    "service_worker": "js/background.js"
   },
-
-  "browser_action": {
-    "default_icon": "icon.png",
+  "action": {
+    "default_title": "Click Me",
     "default_popup": "popup.html"
   },
-  "web_accessible_resources": ["js/inject.js"],
+  "devtools_page": "devtools.html",
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["js/vendor.js", "js/content_script.js"],
-      "run_at": "document_end",
+      "matches": ["*://*/*"],
+      "js": ["js/contentScript.js"],
       "css": ["mx-bp-a11y-extension.css"]
     }
   ],
-
-  "background": {
-    "scripts": ["js/vendor.js", "js/background.js"]
+  "host_permissions": ["*://*/*", "<all_urls>"],
+  "content_security_policy": {
+    "script-src": "self unsafe-eval",
+    "unsafe-eval": "object-src self",
+    "unsafe-inline": "self"
   },
-
-  "permissions": ["storage", "<all_urls>"],
-
-  "devtools_page": "devtools.html",
-  "commands": {
-    "_execute_browser_action": {
-      "suggested_key": {
-        "default": "Alt+Shift+1"
-      }
-    }
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   }
 }

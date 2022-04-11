@@ -1,1 +1,0 @@
-{"version":3,"file":"inject.js","mappings":";;;;;;AAAA;AACA","sources":["webpack://@m11y/extension/./src/inject/inject.ts"],"sourcesContent":["\"use strict\";\nconsole.log('🔥 Inject');\n"],"names":[],"sourceRoot":""}

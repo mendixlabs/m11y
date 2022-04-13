@@ -11,8 +11,8 @@ export { Input_Tag } from "./classes/Input_Tag";
 export { ATagErrorList } from "./classes/A_Tag";
 export { Menu_Tag } from "./classes/Menu_Tag";
 export { Col_Tag } from "./classes/Col_Tag";
-export { H_Tag } from "./classes/H_Tag";
 export { Row_Tag } from "./classes/Row_Tag";
+export { H_Tag } from "./classes/H_Tag";
 
 /**
  * Helpers and Types

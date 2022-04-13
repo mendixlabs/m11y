@@ -4,6 +4,7 @@ import {
   Button,
   ButtonGroup,
   Grid,
+  Heading,
   useColorModeValue,
 } from '@chakra-ui/react';
 import React, { FC } from 'react';
@@ -28,7 +29,7 @@ export const DisplayWarnings: FC<IError> = ({ tag, error, showButtons }) => {
   const clearErrors = () => {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       const tab = tabs[0];
-      if (tab.id) {
+      if (tab?.id) {
         chrome.tabs.sendMessage(
           tab.id,
           {
@@ -42,7 +43,7 @@ export const DisplayWarnings: FC<IError> = ({ tag, error, showButtons }) => {
   const showAllErrors = () => {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       const tab = tabs[0];
-      if (tab.id) {
+      if (tab?.id) {
         chrome.tabs.sendMessage(
           tab.id,
           {
@@ -58,7 +59,7 @@ export const DisplayWarnings: FC<IError> = ({ tag, error, showButtons }) => {
   const showErrorsInConsole = () => {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       const tab = tabs[0];
-      if (tab.id) {
+      if (tab?.id) {
         chrome.tabs.sendMessage(
           tab.id,
           {
@@ -81,7 +82,7 @@ export const DisplayWarnings: FC<IError> = ({ tag, error, showButtons }) => {
   return (
     <Box p={4} borderWidth={1} marginTop={2} bg={bg} borderRadius={10}>
       <Grid templateColumns="80px auto 40px" gap={6}>
-        <Box w="100%" display="flex" alignItems="center">
+        <Box w="100%" display="flex" alignItems="self-start">
           <Badge colorScheme="purple">{error.errorCount} - Issues</Badge>
           <TechnicalExplanation title={'Technical Explanation'}>
             <MarkdownDisplay>
@@ -90,7 +91,18 @@ export const DisplayWarnings: FC<IError> = ({ tag, error, showButtons }) => {
           </TechnicalExplanation>
         </Box>
         <Box w="100%">
-          <MarkdownDisplay>{error.errorDescription.mendix}</MarkdownDisplay>{' '}
+          <Heading size="xs" paddingBottom={'2'}>
+            Explanation
+          </Heading>
+          <MarkdownDisplay fontSize="14">
+            {error.errorDescription.mendix}
+          </MarkdownDisplay>
+          <Heading size="xs" paddingTop={'2'} paddingBottom={'2'}>
+            Possible Solutions
+          </Heading>
+          <MarkdownDisplay fontSize="14">
+            {error.errorDescription.technical}
+          </MarkdownDisplay>
         </Box>
       </Grid>
       {showButtons && (

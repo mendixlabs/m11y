@@ -151,19 +151,23 @@ export const _descriptions = (r: AllErrorEnumTypes): descriptionsType => {
             return {
                 mendix: "Add Tooltips to Buttons/Links without captions. Usually buttons/links used for icons only",
                 technical:
-                    "`<a>` tags are used in Menu items or buttons set to display as links"
+                    "`<a>` tags are used in Menu items or buttons set to display as links. Consider using [this](https://marketplace.mendix.com/link/component/114803) widget if it is not possible to make the changes directly in Mendix"
             };
         case ATagErrorEnum.A_TOOL:
             return {
                 mendix: "A Tags without titles must have Aria Tags on itself or its first child element",
                 technical:
-                    "`<a>` tags are used in Menu items or buttons set to display as links"
+                    "`<a>` tags are used in Menu items or buttons set to display as links.  Consider using [this](https://marketplace.mendix.com/link/component/114803) widget if it is not possible to make the changes directly in Mendix"
             };
         case ButtonTagErrorEnum.BUTTON_TITLE:
             return {
-                mendix: "If a button has no caption you must add a tooltip. Usually this error usually occurs when buttons/links have icons only",
-                technical:
-                    "`<button>` tags are used in Menu items or buttons set to display as links"
+                mendix: "Usually this error usually occurs when buttons/links have icons only",
+                technical: `
+                \n &nbsp;
+                &#9830; Add a Caption or Tooltip to your button.
+                \n &nbsp;
+                &#9830; Consider using [this](https://marketplace.mendix.com/link/component/114803) widget is it is not possible to make the changes directly in Mendix
+                `
             };
         case ColTagErrorEnum.COL_EMPTY:
             return {

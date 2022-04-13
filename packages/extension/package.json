@@ -23,7 +23,7 @@
     "@chakra-ui/react": "^1.8.8",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@m11y/factory": "^0.0.1",
+    "@m11y/factory": "^0.0.2",
     "@types/chrome": "^0.0.168",
     "add": "^2.0.6",
     "framer-motion": "^6",

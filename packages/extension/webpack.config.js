@@ -1,13 +1,13 @@
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 const { camelCase } = require('lodash');
-const { getIfUtils, removeEmpty } = require('webpack-config-utils');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const ProgressBar = require('progress-bar-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ProgressBar = require('progress-bar-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { getIfUtils, removeEmpty } = require('webpack-config-utils');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const pkgJson = require('./package.json');
 

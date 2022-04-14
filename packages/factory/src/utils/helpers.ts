@@ -13,7 +13,8 @@ import {
     ReturnErrorList,
     AllErrorEnumTypes,
     ENUM_CBTestTypes,
-    CB_TEST_TYPE
+    CB_TEST_TYPE,
+    ListsErrorEnum
 } from "./types";
 
 export const _compareErrorLength = (a: ReturnErrorList, b: ReturnErrorList) => {
@@ -72,6 +73,8 @@ export const _getCorrespondingEnum = (tag: string) => {
             return InputTagErrorEnum;
         case '[role="menu"]':
             return MenuErrorEnum;
+        case 'li[role="button"]':
+            return ListsErrorEnum;
         case "mx-placeholder":
             return DataViewErrorEnum;
         default:
@@ -132,6 +135,11 @@ export const rationalizeTagInformation = (tag: string): IRationalize => {
                 mendixName: "Dataview/Layoutgrid (Row)",
                 showButtons: true
             };
+        case 'li[role="button"]':
+            return {
+                mendixName: "List View | As Button",
+                showButtons: true
+            };
         default:
             return {
                 mendixName: "⚠️ No Corresponding Tag found",
@@ -143,15 +151,21 @@ export const _descriptions = (r: AllErrorEnumTypes): descriptionsType => {
     switch (r) {
         case ATagErrorEnum.A_HREF:
             return {
-                mendix: "All A tags must have HREF's",
-                technical:
-                    "`<a>` tags are used in Menu items or buttons set to display as links"
+                mendix: "All A tags must have HREF's. `<a>` tags are used in Menu items or buttons set to display as links",
+                technical: `
+                \n &nbsp;
+                &#9830; Add a link/url to a the corresponding button.
+                `
             };
         case ATagErrorEnum.A_TAB_INDEX:
             return {
-                mendix: "Add Tooltips to Buttons/Links without captions. Usually buttons/links used for icons only",
-                technical:
-                    "`<a>` tags are used in Menu items or buttons set to display as links. Consider using [this](https://marketplace.mendix.com/link/component/114803) widget if it is not possible to make the changes directly in Mendix"
+                mendix: "Usually buttons/links used for icons only",
+                technical: `
+                \n &nbsp;
+                &#9830; Add Tooltips to Buttons/Links without captions.
+                \n &nbsp;
+                &#9830; Consider using [this](https://marketplace.mendix.com/link/component/114803) widget is it is not possible to make the changes directly in Mendix
+                `
             };
         case ATagErrorEnum.A_TOOL:
             return {
@@ -171,7 +185,7 @@ export const _descriptions = (r: AllErrorEnumTypes): descriptionsType => {
             };
         case ColTagErrorEnum.COL_EMPTY:
             return {
-                mendix: "Empty Columns should be avoided as Layout helper",
+                mendix: "Empty Columns should be avoided as Layout helper - _(Design System)_",
                 technical:
                     "`.col` class names are added to layout grids to help with layout and responsiveness - Usually follows Bootstrap 4"
             };
@@ -216,6 +230,16 @@ export const _descriptions = (r: AllErrorEnumTypes): descriptionsType => {
                 mendix: "🥳 You are using the Skip Link Widget",
                 technical:
                     "Your menu is very long. There are more than 14 items and subitems. See [here](https://mendixlabs.github.io/app-services-components/#/web-widgets/skip-link-widget)"
+            };
+        case ListsErrorEnum.LIST_AS_BUTTON:
+            return {
+                mendix: "Using List view Items should be avoided",
+                technical: `
+                    \n &nbsp;
+                    &#9830; Use a different implementation.
+                    \n &nbsp;
+                    &#9830; Consider using [this](https://marketplace.mendix.com/link/component/114803) widget is it is not possible to make the changes directly in Mendix
+                    `
             };
 
         default:

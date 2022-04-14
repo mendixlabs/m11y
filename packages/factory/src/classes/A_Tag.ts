@@ -39,18 +39,19 @@ export class ATagErrorList extends ErrorWarning {
                                 ATagErrorEnum.A_TAB_INDEX
                             )
                         });
-                    }
-                    if (tag.children.length) {
-                        // A tag has children
-                        if (!tag.children[0].hasOwnProperty("ariaLabel")) {
-                            this._pushErrorToErrorList({
-                                tag,
-                                errorType: ErrorEnum.Error,
-                                errorEnumToTarget: ATagErrorEnum.A_TOOL,
-                                errorDescription: _descriptions(
-                                    ATagErrorEnum.A_TOOL
-                                )
-                            });
+                    } else {
+                        if (tag.children.length) {
+                            // A tag has children
+                            if (!tag.children[0].hasOwnProperty("ariaLabel")) {
+                                this._pushErrorToErrorList({
+                                    tag,
+                                    errorType: ErrorEnum.Error,
+                                    errorEnumToTarget: ATagErrorEnum.A_TOOL,
+                                    errorDescription: _descriptions(
+                                        ATagErrorEnum.A_TOOL
+                                    )
+                                });
+                            }
                         }
                     }
                 }

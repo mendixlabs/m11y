@@ -13,6 +13,7 @@ export const navigateThroughErrors = (
     Img_Class,
     Row_Class,
     Col_Class,
+    List_Class,
     Input_Class,
     Button_Class,
     TextArea_Class,
@@ -21,6 +22,11 @@ export const navigateThroughErrors = (
   switch (tag) {
     case 'a':
       return A_Class?.stepThrough({
+        errorEnumToTarget: errorToView?.errorEnumToTarget,
+        step,
+      });
+    case 'li[role="button"]':
+      return List_Class?.stepThrough({
         errorEnumToTarget: errorToView?.errorEnumToTarget,
         step,
       });

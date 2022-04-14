@@ -12,6 +12,7 @@ export const viewAError = (
     Img_Class,
     Row_Class,
     Col_Class,
+    List_Class,
     Menu_Class,
     Input_Class,
     Button_Class,
@@ -36,6 +37,8 @@ export const viewAError = (
       return TextArea_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
     case '[role="menu"]':
       return Menu_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
+    case 'li[role="button"]':
+      return List_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
     default:
       break;
   }

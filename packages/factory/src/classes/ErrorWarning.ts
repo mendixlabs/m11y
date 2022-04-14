@@ -54,17 +54,14 @@ export class ErrorWarning {
             const { tag, errorType } = allATags[index];
             let found = false;
             if (tag && tag.classList) {
-                // console.log("allATags", tag.classList);
                 tag.classList.forEach((className: string) => {
                     if (
                         errorType == ErrorEnum.Error &&
                         className == "mx-bp-a11y-extension-error"
                     ) {
-                        // console.log("Error", tag);
                         return (found = true);
                     }
                     if (errorType == ErrorEnum.Warning && className == "≈") {
-                        // console.log("Warning", tag);
                         return (found = true);
                     }
                 });
@@ -147,6 +144,7 @@ export class ErrorWarning {
     }: IRationalizeDataInput): IReturnRationalizedData {
         const rationalizeErrorList = [];
         const countAllTagErrors = [];
+
         for (let item in passedEnum) {
             if (errorList[item]) {
                 countAllTagErrors.push(errorList[item].errorCount);
@@ -166,7 +164,6 @@ export class ErrorWarning {
      * Toggles on an Off Class names that will show the error in the dom
      */
     public seeErrorsOnType(errorEnumToTarget: AllErrorEnumTypes): void {
-        // console.log("this.errorList", this.errorList, errorEnumToTarget);
         if (this.errorList) {
             if (this.errorList[errorEnumToTarget]) {
                 if (this.errorList[errorEnumToTarget].tags.length) {

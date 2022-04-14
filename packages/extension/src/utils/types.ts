@@ -6,6 +6,7 @@ import {
   Menu_Tag,
   Input_Tag,
   ErrorList,
+  List_Buttons,
   Button_Tag,
   DataView_MainContainer,
   Row_Tag,
@@ -177,15 +178,16 @@ export type descriptionsType = {
 };
 
 export type AllClasses_Types = {
-  A_Class?: ATagErrorList;
   H_Class?: H_Tag;
   Row_Class?: Row_Tag;
-  Img_Class?: Img_TagErrorList;
   Col_Class?: Col_Tag;
   Menu_Class?: Menu_Tag;
   Input_Class?: Input_Tag;
+  A_Class?: ATagErrorList;
   Button_Class?: Button_Tag;
+  List_Class?: List_Buttons;
   TextArea_Class?: Input_Tag;
+  Img_Class?: Img_TagErrorList;
   DataView_Class?: DataView_MainContainer;
 };
 

@@ -19,6 +19,7 @@ const logAllErrorsInConsole = (tag, errorToView, allCurrentClasses) => {
     Img_Class,
     Row_Class,
     Col_Class,
+    List_Class,
     Input_Class,
     Button_Class,
     TextArea_Class
@@ -65,6 +66,11 @@ const logAllErrorsInConsole = (tag, errorToView, allCurrentClasses) => {
         errorEnumToTarget: errorToView?.errorEnumToTarget
       });
 
+    case 'li[role="button"]':
+      return List_Class?.logOutAllErrors({
+        errorEnumToTarget: errorToView?.errorEnumToTarget
+      });
+
     default:
       break;
   }
@@ -94,6 +100,7 @@ const getAllErrors = ({
     Col_Class,
     Row_Class,
     Menu_Class,
+    List_Class,
     Input_Class,
     Button_Class,
     TextArea_Class,
@@ -105,6 +112,7 @@ const getAllErrors = ({
   const img_Errors = Img_Class?.getAllErrorsAndScan();
   const col_Errors = Col_Class?.getAllErrorsAndScan();
   const input_Errors = Input_Class?.getAllErrorsAndScan();
+  const list_Errors = List_Class?.getAllErrorsAndScan();
   const button_Errors = Button_Class?.getAllErrorsAndScan();
   const menuClass_Errors = Menu_Class?.getAllErrorsAndScan();
   const textArea_Errors = TextArea_Class?.getAllErrorsAndScan();
@@ -149,6 +157,10 @@ const getAllErrors = ({
     tag: DataView_Class?.tag,
     errors: dataView_Errors?.errors,
     count: dataView_Errors?.totalError
+  }, {
+    tag: List_Class?.tag,
+    errors: list_Errors?.errors,
+    count: list_Errors?.totalError
   }];
   const sortListEmptyAtBottom = response.sort(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__._compareErrorLength);
   const sortListMostErrorsAtTop = sortListEmptyAtBottom.sort(_utils_helpers__WEBPACK_IMPORTED_MODULE_0__._compareCount);
@@ -174,6 +186,7 @@ const navigateThroughErrors = (tag, errorToView, step, allCurrentClasses) => {
     Img_Class,
     Row_Class,
     Col_Class,
+    List_Class,
     Input_Class,
     Button_Class,
     TextArea_Class
@@ -182,6 +195,12 @@ const navigateThroughErrors = (tag, errorToView, step, allCurrentClasses) => {
   switch (tag) {
     case 'a':
       return A_Class?.stepThrough({
+        errorEnumToTarget: errorToView?.errorEnumToTarget,
+        step
+      });
+
+    case 'li[role="button"]':
+      return List_Class?.stepThrough({
         errorEnumToTarget: errorToView?.errorEnumToTarget,
         step
       });
@@ -361,6 +380,7 @@ const viewAError = (tag, errorToView, allCurrentClasses) => {
     Img_Class,
     Row_Class,
     Col_Class,
+    List_Class,
     Menu_Class,
     Input_Class,
     Button_Class,
@@ -394,6 +414,9 @@ const viewAError = (tag, errorToView, allCurrentClasses) => {
 
     case '[role="menu"]':
       return Menu_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
+
+    case 'li[role="button"]':
+      return List_Class?.seeErrorsOnType(errorToView?.errorEnumToTarget);
 
     default:
       break;
@@ -723,15 +746,17 @@ class ATagErrorList extends ErrorWarning_1.ErrorWarning {
                             errorDescription: (0, helpers_1._descriptions)(types_1.ATagErrorEnum.A_TAB_INDEX)
                         });
                     }
-                    if (tag.children.length) {
-                        // A tag has children
-                        if (!tag.children[0].hasOwnProperty("ariaLabel")) {
-                            this._pushErrorToErrorList({
-                                tag,
-                                errorType: types_1.ErrorEnum.Error,
-                                errorEnumToTarget: types_1.ATagErrorEnum.A_TOOL,
-                                errorDescription: (0, helpers_1._descriptions)(types_1.ATagErrorEnum.A_TOOL)
-                            });
+                    else {
+                        if (tag.children.length) {
+                            // A tag has children
+                            if (!tag.children[0].hasOwnProperty("ariaLabel")) {
+                                this._pushErrorToErrorList({
+                                    tag,
+                                    errorType: types_1.ErrorEnum.Error,
+                                    errorEnumToTarget: types_1.ATagErrorEnum.A_TOOL,
+                                    errorDescription: (0, helpers_1._descriptions)(types_1.ATagErrorEnum.A_TOOL)
+                                });
+                            }
                         }
                     }
                 }
@@ -993,15 +1018,12 @@ class ErrorWarning {
             const { tag, errorType } = allATags[index];
             let found = false;
             if (tag && tag.classList) {
-                // console.log("allATags", tag.classList);
                 tag.classList.forEach((className) => {
                     if (errorType == types_1.ErrorEnum.Error &&
                         className == "mx-bp-a11y-extension-error") {
-                        // console.log("Error", tag);
                         return (found = true);
                     }
                     if (errorType == types_1.ErrorEnum.Warning && className == "≈") {
-                        // console.log("Warning", tag);
                         return (found = true);
                     }
                 });
@@ -1090,7 +1112,6 @@ class ErrorWarning {
      * Toggles on an Off Class names that will show the error in the dom
      */
     seeErrorsOnType(errorEnumToTarget) {
-        // console.log("this.errorList", this.errorList, errorEnumToTarget);
         if (this.errorList) {
             if (this.errorList[errorEnumToTarget]) {
                 if (this.errorList[errorEnumToTarget].tags.length) {
@@ -1408,6 +1429,67 @@ exports.Input_Tag = Input_Tag;
 
 /***/ }),
 
+/***/ "../factory/dist/classes/List_Buttons.js":
+/*!***********************************************!*\
+  !*** ../factory/dist/classes/List_Buttons.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.List_Buttons = void 0;
+const ErrorWarning_1 = __webpack_require__(/*! ./ErrorWarning */ "../factory/dist/classes/ErrorWarning.js");
+const types_1 = __webpack_require__(/*! ../utils/types */ "../factory/dist/utils/types.js");
+const helpers_1 = __webpack_require__(/*! ../utils/helpers */ "../factory/dist/utils/helpers.js");
+class List_Buttons extends ErrorWarning_1.ErrorWarning {
+    /**
+     * Class For All A Tag Errors - Extends ErrorWarning
+     *
+     * @param tag -String of the Tag Name to Find
+     * @param autoStart - Auto run Checks Default true
+     * @returns Instance of ErrorsClass {allAErrorTags, allTags,errorList}
+     */
+    constructor(tag) {
+        super(tag);
+    }
+    /**
+     * Function to get all elements in dom
+     * Either use super.getElementByClassName or super.getElementByTagName
+     */
+    _getAllATags() {
+        super.getElementByClassName;
+        const allTags = super.querySelectorAll();
+        this.allTags = allTags;
+    }
+    /**
+     * Scans DOM for All a Tags And List Errors (Add Checks for Errors here)
+     */
+    _scanAllErrors() {
+        for (let index = 0; index < this.allTags.length; index++) {
+            const tag = this.allTags[index];
+            if (tag) {
+                if (!tag.title && !tag.ariaLabel) {
+                    this._pushErrorToErrorList({
+                        tag,
+                        errorType: types_1.ErrorEnum.Warning,
+                        errorEnumToTarget: types_1.ListsErrorEnum.LIST_AS_BUTTON,
+                        errorDescription: (0, helpers_1._descriptions)(types_1.ListsErrorEnum.LIST_AS_BUTTON)
+                    });
+                }
+            }
+        }
+    }
+    getAllErrorsAndScan() {
+        this._getAllATags();
+        this._scanAllErrors();
+        return this.getAllErrors();
+    }
+}
+exports.List_Buttons = List_Buttons;
+//# sourceMappingURL=List_Buttons.js.map
+
+/***/ }),
+
 /***/ "../factory/dist/classes/Menu_Tag.js":
 /*!*******************************************!*\
   !*** ../factory/dist/classes/Menu_Tag.js ***!
@@ -1668,12 +1750,14 @@ exports.CBFilter = CBFilter;
 
 /// <reference types="chrome"/>
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ENUM_CBTestTypes = exports.cbTests = exports.rationalizeTagInformation = exports.injectCBTest = exports.H_Tag = exports.Row_Tag = exports.Col_Tag = exports.Menu_Tag = exports.ATagErrorList = exports.Input_Tag = exports.CBFilter = exports.Button_Tag = exports.Img_TagErrorList = exports.DataView_MainContainer = void 0;
+exports.ENUM_CBTestTypes = exports.cbTests = exports.rationalizeTagInformation = exports.injectCBTest = exports.H_Tag = exports.Row_Tag = exports.Col_Tag = exports.Menu_Tag = exports.ATagErrorList = exports.Input_Tag = exports.CBFilter = exports.Button_Tag = exports.Img_TagErrorList = exports.List_Buttons = exports.DataView_MainContainer = void 0;
 /**
  * Classes
  */
 var DataView_MainContainer_1 = __webpack_require__(/*! ./classes/DataView_MainContainer */ "../factory/dist/classes/DataView_MainContainer.js");
 Object.defineProperty(exports, "DataView_MainContainer", ({ enumerable: true, get: function () { return DataView_MainContainer_1.DataView_MainContainer; } }));
+var List_Buttons_1 = __webpack_require__(/*! ./classes/List_Buttons */ "../factory/dist/classes/List_Buttons.js");
+Object.defineProperty(exports, "List_Buttons", ({ enumerable: true, get: function () { return List_Buttons_1.List_Buttons; } }));
 var Img_Tag_1 = __webpack_require__(/*! ./classes/Img_Tag */ "../factory/dist/classes/Img_Tag.js");
 Object.defineProperty(exports, "Img_TagErrorList", ({ enumerable: true, get: function () { return Img_Tag_1.Img_TagErrorList; } }));
 var Button_Tag_1 = __webpack_require__(/*! ./classes/Button_Tag */ "../factory/dist/classes/Button_Tag.js");
@@ -1769,6 +1853,8 @@ const _getCorrespondingEnum = (tag) => {
             return types_1.InputTagErrorEnum;
         case '[role="menu"]':
             return types_1.MenuErrorEnum;
+        case 'li[role="button"]':
+            return types_1.ListsErrorEnum;
         case "mx-placeholder":
             return types_1.DataViewErrorEnum;
         default:
@@ -1828,6 +1914,11 @@ const rationalizeTagInformation = (tag) => {
                 mendixName: "Dataview/Layoutgrid (Row)",
                 showButtons: true
             };
+        case 'li[role="button"]':
+            return {
+                mendixName: "List View | As Button",
+                showButtons: true
+            };
         default:
             return {
                 mendixName: "⚠️ No Corresponding Tag found",
@@ -1840,13 +1931,21 @@ const _descriptions = (r) => {
     switch (r) {
         case types_1.ATagErrorEnum.A_HREF:
             return {
-                mendix: "All A tags must have HREF's",
-                technical: "`<a>` tags are used in Menu items or buttons set to display as links"
+                mendix: "All A tags must have HREF's. `<a>` tags are used in Menu items or buttons set to display as links",
+                technical: `
+                \n &nbsp;
+                &#9830; Add a link/url to a the corresponding button.
+                `
             };
         case types_1.ATagErrorEnum.A_TAB_INDEX:
             return {
-                mendix: "Add Tooltips to Buttons/Links without captions. Usually buttons/links used for icons only",
-                technical: "`<a>` tags are used in Menu items or buttons set to display as links. Consider using [this](https://marketplace.mendix.com/link/component/114803) widget if it is not possible to make the changes directly in Mendix"
+                mendix: "Usually buttons/links used for icons only",
+                technical: `
+                \n &nbsp;
+                &#9830; Add Tooltips to Buttons/Links without captions.
+                \n &nbsp;
+                &#9830; Consider using [this](https://marketplace.mendix.com/link/component/114803) widget is it is not possible to make the changes directly in Mendix
+                `
             };
         case types_1.ATagErrorEnum.A_TOOL:
             return {
@@ -1865,7 +1964,7 @@ const _descriptions = (r) => {
             };
         case types_1.ColTagErrorEnum.COL_EMPTY:
             return {
-                mendix: "Empty Columns should be avoided as Layout helper",
+                mendix: "Empty Columns should be avoided as Layout helper - _(Design System)_",
                 technical: "`.col` class names are added to layout grids to help with layout and responsiveness - Usually follows Bootstrap 4"
             };
         case types_1.ColTagErrorEnum.LONG_COLS:
@@ -1902,6 +2001,16 @@ const _descriptions = (r) => {
             return {
                 mendix: "🥳 You are using the Skip Link Widget",
                 technical: "Your menu is very long. There are more than 14 items and subitems. See [here](https://mendixlabs.github.io/app-services-components/#/web-widgets/skip-link-widget)"
+            };
+        case types_1.ListsErrorEnum.LIST_AS_BUTTON:
+            return {
+                mendix: "Using List view Items should be avoided",
+                technical: `
+                    \n &nbsp;
+                    &#9830; Use a different implementation.
+                    \n &nbsp;
+                    &#9830; Consider using [this](https://marketplace.mendix.com/link/component/114803) widget is it is not possible to make the changes directly in Mendix
+                    `
             };
         default:
             return {
@@ -2069,7 +2178,7 @@ exports.injectCBTest = injectCBTest;
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ENUM_CBTestTypes = exports.EnumStateTypes = exports.EnumContentScripMessages = exports.MenuErrorEnum = exports.ColTagErrorEnum = exports.InputTagErrorEnum = exports.HTagErrorEnum = exports.DataViewErrorEnum = exports.ImgTagErrorEnum = exports.ButtonTagErrorEnum = exports.ATagErrorEnum = exports.ErrorEnum = void 0;
+exports.ENUM_CBTestTypes = exports.EnumStateTypes = exports.EnumContentScripMessages = exports.MenuErrorEnum = exports.ColTagErrorEnum = exports.InputTagErrorEnum = exports.HTagErrorEnum = exports.DataViewErrorEnum = exports.ImgTagErrorEnum = exports.ButtonTagErrorEnum = exports.ListsErrorEnum = exports.ATagErrorEnum = exports.ErrorEnum = void 0;
 var ErrorEnum;
 (function (ErrorEnum) {
     ErrorEnum[ErrorEnum["Error"] = 0] = "Error";
@@ -2082,6 +2191,10 @@ var ATagErrorEnum;
     ATagErrorEnum["A_HREF"] = "A_HREF";
     ATagErrorEnum["A_TAB_INDEX"] = "A_TAB_INDEX";
 })(ATagErrorEnum = exports.ATagErrorEnum || (exports.ATagErrorEnum = {}));
+var ListsErrorEnum;
+(function (ListsErrorEnum) {
+    ListsErrorEnum["LIST_AS_BUTTON"] = "LIST_AS_BUTTON";
+})(ListsErrorEnum = exports.ListsErrorEnum || (exports.ListsErrorEnum = {}));
 var ButtonTagErrorEnum;
 (function (ButtonTagErrorEnum) {
     ButtonTagErrorEnum["BUTTON_TITLE"] = "BUTTON_TITLE";
@@ -2233,6 +2346,7 @@ let Button_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.Button_Tag('bu
 let Img_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.Img_TagErrorList('img');
 let TextArea_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.Input_Tag('textarea');
 let Menu_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.Menu_Tag('[role="menu"]');
+let List_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.List_Buttons('li[role="button"]');
 let Row_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.Row_Tag('row');
 let DataView_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.DataView_MainContainer('mx-placeholder');
 let CBFilter_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.CBFilter(); // This is overkill - Doing it prop is causing issues - Quick Fix
@@ -2246,16 +2360,15 @@ function main() {
   Img_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.Img_TagErrorList('img');
   TextArea_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.Input_Tag('textarea');
   Menu_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.Menu_Tag('[role="menu"]');
+  List_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.List_Buttons('li[role="button"]');
   Row_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.Row_Tag('row');
   DataView_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.DataView_MainContainer('mx-placeholder');
   CBFilter_Class = new _m11y_factory__WEBPACK_IMPORTED_MODULE_0__.CBFilter();
 }
 
 (async function () {
-  console.log('FIRE'); // @ts-ignore
-
+  // @ts-ignore
   mxWidow = await (0,_page_context__WEBPACK_IMPORTED_MODULE_3__.runInPageContext)(() => mx);
-  console.log('mxWidow', mxWidow);
 })();
 
 const allCurrentClasses = {
@@ -2265,6 +2378,7 @@ const allCurrentClasses = {
   Img_Class,
   Col_Class,
   Menu_Class,
+  List_Class,
   Input_Class,
   Button_Class,
   TextArea_Class,

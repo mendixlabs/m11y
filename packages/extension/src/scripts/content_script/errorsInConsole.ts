@@ -19,6 +19,7 @@ export const logAllErrorsInConsole = (
     Img_Class,
     Row_Class,
     Col_Class,
+    List_Class,
     Input_Class,
     Button_Class,
     TextArea_Class,
@@ -54,6 +55,10 @@ export const logAllErrorsInConsole = (
       });
     case 'textarea':
       return TextArea_Class?.logOutAllErrors({
+        errorEnumToTarget: errorToView?.errorEnumToTarget,
+      });
+    case 'li[role="button"]':
+      return List_Class?.logOutAllErrors({
         errorEnumToTarget: errorToView?.errorEnumToTarget,
       });
     default:

@@ -65,6 +65,9 @@ export enum ATagErrorEnum {
     A_HREF = "A_HREF",
     A_TAB_INDEX = "A_TAB_INDEX"
 }
+export enum ListsErrorEnum {
+    LIST_AS_BUTTON = "LIST_AS_BUTTON"
+}
 export enum ButtonTagErrorEnum {
     BUTTON_TITLE = "BUTTON_TITLE"
 }
@@ -106,6 +109,7 @@ export type AllErrorEnumTypes =
     | ATagErrorEnum
     | ButtonTagErrorEnum
     | MenuErrorEnum
+    | ListsErrorEnum
     | HTagErrorEnum;
 
 export interface IInitialState {

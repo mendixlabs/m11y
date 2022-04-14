@@ -6,6 +6,7 @@ import {
   CBFilter,
   Input_Tag,
   Button_Tag,
+  List_Buttons,
   ATagErrorList,
   Img_TagErrorList,
   DataView_MainContainer,
@@ -34,6 +35,7 @@ let Button_Class = new Button_Tag('button');
 let Img_Class = new Img_TagErrorList('img');
 let TextArea_Class = new Input_Tag('textarea');
 let Menu_Class = new Menu_Tag('[role="menu"]');
+let List_Class = new List_Buttons('li[role="button"]');
 let Row_Class = new Row_Tag('row');
 let DataView_Class = new DataView_MainContainer('mx-placeholder');
 let CBFilter_Class = new CBFilter();
@@ -48,16 +50,15 @@ function main() {
   Img_Class = new Img_TagErrorList('img');
   TextArea_Class = new Input_Tag('textarea');
   Menu_Class = new Menu_Tag('[role="menu"]');
+  List_Class = new List_Buttons('li[role="button"]');
   Row_Class = new Row_Tag('row');
   DataView_Class = new DataView_MainContainer('mx-placeholder');
   CBFilter_Class = new CBFilter();
 }
 
 (async function () {
-  console.log('FIRE');
   // @ts-ignore
   mxWidow = (await runInPageContext(() => mx)) as I_MX_WINDOW;
-  console.log('mxWidow', mxWidow);
 })();
 
 const allCurrentClasses: AllClasses_Types = {
@@ -67,6 +68,7 @@ const allCurrentClasses: AllClasses_Types = {
   Img_Class,
   Col_Class,
   Menu_Class,
+  List_Class,
   Input_Class,
   Button_Class,
   TextArea_Class,

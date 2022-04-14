@@ -9,6 +9,7 @@ export const getAllErrors = ({ allCurrentClasses }: GetAllErrors_TYPE) => {
     Col_Class,
     Row_Class,
     Menu_Class,
+    List_Class,
     Input_Class,
     Button_Class,
     TextArea_Class,
@@ -21,6 +22,7 @@ export const getAllErrors = ({ allCurrentClasses }: GetAllErrors_TYPE) => {
   const img_Errors = Img_Class?.getAllErrorsAndScan();
   const col_Errors = Col_Class?.getAllErrorsAndScan();
   const input_Errors = Input_Class?.getAllErrorsAndScan();
+  const list_Errors = List_Class?.getAllErrorsAndScan();
   const button_Errors = Button_Class?.getAllErrorsAndScan();
   const menuClass_Errors = Menu_Class?.getAllErrorsAndScan();
   const textArea_Errors = TextArea_Class?.getAllErrorsAndScan();
@@ -75,6 +77,11 @@ export const getAllErrors = ({ allCurrentClasses }: GetAllErrors_TYPE) => {
       tag: DataView_Class?.tag,
       errors: dataView_Errors?.errors,
       count: dataView_Errors?.totalError,
+    },
+    {
+      tag: List_Class?.tag,
+      errors: list_Errors?.errors,
+      count: list_Errors?.totalError,
     },
   ];
   const sortListEmptyAtBottom = response.sort(_compareErrorLength);

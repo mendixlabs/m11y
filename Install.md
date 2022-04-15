@@ -2,7 +2,7 @@
 
 1. Download and Unzip Build
 
-   Download the latest release zip and unzip M11Y from [here](https://github.com/ahwelgemoed/mx-a11y-extention/releases)
+   Download the latest release zip and unzip M11Y from [here](https://github.com/mendixlabs/m11y/releases)
 
 2. Set Chrome Extension into Developer mode
 

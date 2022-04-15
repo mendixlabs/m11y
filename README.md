@@ -90,7 +90,7 @@ Track current Project status <a href='https://github.com/mendixlabs/m11y/project
 
 ## Install Locally
 
-Install project locally [here](/Install.md)
+Install project locally [here](/INSTALL.md)
 
 ## Help/Contribute
 

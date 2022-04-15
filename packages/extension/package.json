@@ -1,6 +1,6 @@
 {
   "name": "@m11y/extension",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Extension to Help A11y and Best Practices when creating Mendix Apps",
   "main": "index.js",
   "private": true,

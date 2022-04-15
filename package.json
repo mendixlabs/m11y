@@ -1,6 +1,6 @@
 {
   "name": "m11y",
-  "version": "1.2.0",
+  "version": "0.0.4",
   "description": "",
   "private": true,
   "workspaces": {
@@ -17,6 +17,7 @@
     "dev:packages": "lerna run dev --scope=@m11y/factory --stream",
     "build:packages": "lerna run build --scope=@m11y/factory --stream",
     "dev": "lerna run dev --scope={@m11y/factory,@m11y/extension} --parallel",
+    "build": "lerna run build --scope={@m11y/factory,@m11y/extension} --parallel",
     "test:factory": "lerna run test --scope=@m11y/factory --stream",
     "version": "lerna version --conventional-commits",
     "release:major": "lerna version major --conventional-commits --no-push",
